@@ -19,15 +19,15 @@ import VisitUs from './components/VisitUs';
 import ProductsByCategory from './components/ProductsByCategory';
 import Product from './components/Product';
 const routesUser = [
-  { path: "/home", component: <Home/>},
+  { path: "/pastricia-bakery", component: <Home/>},
   { path: "/login", component: <Login/>},
   { path: "/signup", component: <SignUp/>},
-  { path: "/account", component: <Account/>},
-  { path: "/order-history", component: <OrderHistory/>},
-  { path: "/detail-order", component: <DetailOrder/>},
-  { path: "/products", component: <ProductsList/>},
-  { path: "/news&promotion", component: <NewsAndPromotions/>},
-  { path: "/visit-us", component: <VisitUs/>},
+  { path: "/pastricia-bakery/account", component: <Account/>},
+  { path: "/pastricia-bakery/order-history", component: <OrderHistory/>},
+  { path: "/pastricia-bakery/detail-order", component: <DetailOrder/>},
+  { path: "/pastricia-bakery/products", component: <ProductsList/>},
+  { path: "/pastricia-bakery/news&promotion", component: <NewsAndPromotions/>},
+  { path: "/pastricia-bakery/visit-us", component: <VisitUs/>},
 ];
 
 const renderRoutesUser = () => {
@@ -42,9 +42,9 @@ function App() {
     <Navbar/>
     <Routes>
     {renderRoutesUser()}
-    <Route path='/*' element={<PageNotFound />} />
-    <Route path='details/:id' element={<Product/>} />
-    <Route path='/products/:category' element={<ProductsByCategory/>}/>
+    <Route path='/pastricia-bakery/*' element={<PageNotFound />} />
+    <Route path='/pastricia-bakery/details/:id' element={<Product/>} />
+    <Route path='/pastricia-bakery/products/:category' element={<ProductsByCategory/>}/>
     </Routes>
     <Newsletter/>
     <Footer/>

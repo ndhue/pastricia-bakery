@@ -3,10 +3,10 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon, UserCircleIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 const navigation = [
-  { name: "OUR PRODUCT", href: "/products" },
-  { name: "NEW & PROMOTION", href: "/news&promotion" },
-  { name: "VISIT US", href: "/visit-us" },
-  { name: "ABOUT US", href: "/about-us" },
+  { name: "OUR PRODUCT", href: "/pastricia-bakery/products" },
+  { name: "NEW & PROMOTION", href: "/pastricia-bakery/news&promotion" },
+  { name: "VISIT US", href: "/pastricia-bakery/visit-us" },
+  { name: "ABOUT US", href: "/pastricia-bakery/about-us" },
 ];
 
 function classNames(...classes) {
@@ -54,19 +54,19 @@ export default function Navbar() {
                   <div className="hidden lg:ml-6 lg:block">
                     <div className="flex space-x-4">
                       <Link
-                        to="/products"
+                        to="/pastricia-bakery/products"
                         className=" bg-secondary hover:bg-primary rounded-sm px-4 py-2 font-medium ease-in-out duration-300"
                       >
                         OUR PRODUCTS
                       </Link>
                       <Link
-                        to="/news&promotion"
+                        to="/pastricia-bakery/news&promotion"
                         className=" bg-secondary hover:bg-primary rounded-sm px-4 py-2 font-medium ease-in-out duration-300"
                       >
                         NEW & PROMOTION
                       </Link>
                       <Link
-                        to="/visit-us"
+                        to="/pastricia-bakery/visit-us"
                         className=" bg-secondary hover:bg-primary rounded-sm px-4 py-2 font-medium ease-in-out duration-300"
                       >
                         VISIT US
@@ -77,13 +77,13 @@ export default function Navbar() {
                     </div>
                 </div>     
                 <div className="absolute inset-x-0 w-28 md:w-36 lg:w-30 mx-auto mt-8 md:mt-11 rounded-full">
-                    <a href="/home">
+                    <a href="/pastricia-bakery">
                       <img alt="logo" src="../assets/img/Logo.png"/>
                   </a>
                 </div>   
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static lg:inset-auto lg:ml-6 lg:pr-0">
                   <Link
-                    to="/about-us"
+                    to="/pastricia-bakery/about-us"
                     className="relative lg:block hidden bg-secondary hover:bg-primary rounded-sm px-4 py-2 font-medium ease-in-out duration-300"
                   >
                     ABOUT US
@@ -134,7 +134,7 @@ export default function Navbar() {
                         <Menu.Item>
                           {({ active }) => (
                             <Link
-                              to="/account"
+                              to="/pastricia-bakery/account"
                               className={classNames(
                                 active ? "bg-secondary ease-in-out duration-300" : "",
                                 "block px-4 py-2"
@@ -147,7 +147,7 @@ export default function Navbar() {
                         <Menu.Item>
                           {({ active }) => (
                             <Link
-                              to="/order-history"
+                              to="/pastricia-bakery/order-history"
                               className={classNames(
                                 active ? "bg-secondary ease-in-out duration-300" : "",
                                 "block px-4 py-2"
