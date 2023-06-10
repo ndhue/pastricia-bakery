@@ -19,7 +19,7 @@ import VisitUs from './components/VisitUs';
 import ProductsByCategory from './components/ProductsByCategory';
 import Product from './components/Product';
 const routesUser = [
-  { path: "/", component: <Home/>},
+  { path: "/home", component: <Home/>},
   { path: "/login", component: <Login/>},
   { path: "/signup", component: <SignUp/>},
   { path: "/account", component: <Account/>},

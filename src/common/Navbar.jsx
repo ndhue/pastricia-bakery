@@ -77,7 +77,7 @@ export default function Navbar() {
                     </div>
                 </div>     
                 <div className="absolute inset-x-0 w-28 md:w-36 lg:w-30 mx-auto mt-8 md:mt-11 rounded-full">
-                    <a href="/">
+                    <a href="/home">
                       <img alt="logo" src="../assets/img/Logo.png"/>
                   </a>
                 </div>   
