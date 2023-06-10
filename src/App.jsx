@@ -18,6 +18,8 @@ import NewsAndPromotions from './components/NewsAndPromotions';
 import VisitUs from './components/VisitUs';
 import ProductsByCategory from './components/ProductsByCategory';
 import Product from './components/Product';
+
+import { ScrollToTop } from './common/ScrollToTop';
 const routesUser = [
   { path: "/pastricia-bakery", component: <Home/>},
   { path: "/login", component: <Login/>},
@@ -40,12 +42,14 @@ function App() {
   return (
     <BrowserRouter>
     <Navbar/>
+    <ScrollToTop>
     <Routes>
-    {renderRoutesUser()}
-    <Route path='/pastricia-bakery/*' element={<PageNotFound />} />
-    <Route path='/pastricia-bakery/details/:id' element={<Product/>} />
-    <Route path='/pastricia-bakery/products/:category' element={<ProductsByCategory/>}/>
+      {renderRoutesUser()}
+      <Route path='/pastricia-bakery/*' element={<PageNotFound />} />
+      <Route path='/pastricia-bakery/details/:id' element={<Product/>} />
+      <Route path='/pastricia-bakery/products/:category' element={<ProductsByCategory/>}/>
     </Routes>
+    </ScrollToTop>
     <Newsletter/>
     <Footer/>
     </BrowserRouter>

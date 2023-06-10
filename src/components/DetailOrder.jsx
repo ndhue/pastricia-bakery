@@ -35,7 +35,7 @@ export default function DetailOrder() {
               <tbody>
                 <tr className="border-2">
                   <td scope="row" className="p-4  text-left">
-                    <img src="../assets/products/gingerbread-cupcake.png" width="85" height="85" className="lg:inline rounded-md pb-2 lg:pb-0"></img>
+                    <img src="assets/products/gingerbread-cupcake.png" width="85" height="85" className="lg:inline rounded-md pb-2 lg:pb-0"></img>
                     <span className="px-0 lg:px-2 text-sm lg:text-base">Mango Meringue Cupcake</span>
                   </td>
                   <td className="p-4 text-sm">$4.00</td>

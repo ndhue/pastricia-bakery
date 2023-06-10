@@ -8,7 +8,7 @@ export default function NewsAndPromotions() {
             <div className="content px-6">
                 <div className="card bg-secondary grid grid-cols-1 md:grid-cols-2 items-center">
                     <div className="img md:col-span-1 col-span-2">
-                        <img src='../assets/news/news1.png' alt='' className='w-full' />
+                        <img src='assets/news/news1.png' alt='' className='w-full' />
                     </div>
                     <div className="text p-10 md:p-28 md:col-span-1 col-span-2">
                         <h1 className='md:text-6xl text-4xl md:pb-8 pb-6'>Catering & Events</h1>
@@ -22,12 +22,12 @@ export default function NewsAndPromotions() {
                         <p className='md:text-lg text-base'>Want your delicious treats ASAP? Order for local delivery or pick up at your nearest Pastrica Bakery and enjoy them today!</p>
                     </div>
                     <div className="img md:col-span-1 col-span-2">
-                        <img src='../assets/news/news2.png' alt='' className='w-full' />
+                        <img src='assets/news/news2.png' alt='' className='w-full' />
                     </div>
                 </div>
                 <div className="grid card md:hidden grid-cols-1 md:grid-cols-2 items-center border">
                     <div className="img md:col-span-1 col-span-2">
-                        <img src='../assets/news/news2.png' alt='' className='w-full' />
+                        <img src='assets/news/news2.png' alt='' className='w-full' />
                     </div>
                     <div className="text p-10 md:p-24 md:col-span-1 col-span-2">
                         <h1 className='md:text-6xl text-4xl md:pb-8 pb-6'>Same-Day Local Delivery & Pick Up</h1>
@@ -36,7 +36,7 @@ export default function NewsAndPromotions() {
                 </div>
                 <div className="card bg-secondary grid grid-cols-1 md:grid-cols-2 items-center">
                     <div className="img md:col-span-1 col-span-2">
-                        <img src='../assets/news/news3.png' alt='' className='w-full' />
+                        <img src='assets/news/news3.png' alt='' className='w-full' />
                     </div>
                     <div className="text p-10 md:p-32 md:col-span-1 col-span-2">
                         <h1 className='md:text-6xl text-4xl md:pb-8 pb-6'>Advance Order for Pick Up</h1>
