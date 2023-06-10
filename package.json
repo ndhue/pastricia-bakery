@@ -1,6 +1,7 @@
 {
   "name": "pastricia-bakery",
   "private": true,
+  "homepage": "https://ndhue.github.io/pastricia-bakery",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
