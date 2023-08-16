@@ -46,7 +46,7 @@ function App() {
     <Routes>
       {renderRoutesUser()}
       <Route path='/pastricia-bakery/*' element={<PageNotFound />} />
-      <Route path='/pastricia-bakery/details/:id' element={<Product/>} />
+      <Route path='/pastricia-bakery/detail/:id' element={<Product/>} />
       <Route path='/pastricia-bakery/products/:category' element={<ProductsByCategory/>}/>
     </Routes>
     </ScrollToTop>

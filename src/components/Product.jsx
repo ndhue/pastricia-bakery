@@ -22,7 +22,7 @@ export default function Product() {
             </section>
             <div className="content grid grid-cols-1 md:grid-cols-2 md:gap-10">
               <div className="left md:col-span-1 col-span-2 items-center">
-                <img src={item.src} alt={item.name} className='w-full' />
+                <img src={`/pastricia-bakery/${item.src}`} alt={item.name} className='w-full' />
               </div>
               <div className="right md:col-span-1 col-span-2 pt-4 md:pt-2">
                 <h1 className='text-4xl w-full md:w-1/2'>{item.name}</h1>

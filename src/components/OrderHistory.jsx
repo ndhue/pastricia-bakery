@@ -25,7 +25,7 @@ export default function OrderHistory() {
               <td className="px-6 py-4">$80.00</td>
               <td className="px-6 py-4 text-green-400">Delivered</td>
               <td className="px-6 py-4">
-                <a href="/detail-order" className="hover:underline hover:underline-offset-2 hover:text-primary ease-in-out duration-300">Detail</a>
+                <a href="/pastricia-bakery/detail-order" className="hover:underline hover:underline-offset-2 hover:text-primary ease-in-out duration-300">Detail</a>
               </td>
             </tr>
           </tbody>
