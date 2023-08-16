@@ -77,9 +77,9 @@ export default function Navbar() {
                     </div>
                 </div>     
                 <div className="absolute inset-x-0 w-28 md:w-36 lg:w-30 mx-auto mt-8 md:mt-11 rounded-full">
-                    <a href="/pastricia-bakery">
+                    <Link to="/pastricia-bakery">
                       <img alt="logo" src="assets/img/Logo.png"/>
-                  </a>
+                  </Link>
                 </div>   
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static lg:inset-auto lg:ml-6 lg:pr-0">
                   <Link
