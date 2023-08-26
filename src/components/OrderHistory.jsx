@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function OrderHistory() {
   return (
@@ -25,7 +26,7 @@ export default function OrderHistory() {
               <td className="px-6 py-4">$80.00</td>
               <td className="px-6 py-4 text-green-400">Delivered</td>
               <td className="px-6 py-4">
-                <a href="/pastricia-bakery/detail-order" className="hover:underline hover:underline-offset-2 hover:text-primary ease-in-out duration-300">Detail</a>
+                <Link to="/pastricia-bakery/detail-order" className="hover:underline hover:underline-offset-2 hover:text-primary ease-in-out duration-300">Detail</Link>
               </td>
             </tr>
           </tbody>

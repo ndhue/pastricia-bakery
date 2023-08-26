@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { listTypes } from "../data";
 export default function Type() {
   const renderTypes = () => {
     return listTypes.map((type, index) => {
       return (
-        <a
-          href="/"
+        <Link
+          to={`/pastricia-bakery/${type.id}`}
           key={index}
           className="col-span-2 w-full lg:col-span-1 text-center"
         >
@@ -13,7 +14,7 @@ export default function Type() {
             <img alt={type.name} src={type.src}></img>
           </div>
           <p className="pt-2 text-[17px]">{type.name}</p>
-        </a>
+        </Link>
       );
     });
   };
