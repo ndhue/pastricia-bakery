@@ -32,7 +32,7 @@ export default function OrderHistory() {
                 <td className="px-6 py-4">${order.total}.00</td>
                 {order.status != "Waiting" ? <td className="px-6 py-4 text-green-500">{order.status}</td> : <td className="px-6 py-4 text-yellow-500">{order.status}</td>}
                 <td className="px-6 py-4">
-                  <Link to={`/pastricia-bakery/detail-order/${order.id}`} className="hover:underline hover:underline-offset-2 hover:text-primary ease-in-out duration-300">Detail</Link>
+                  <a href={`/pastricia-bakery/detail-order/${order.id}`} className="hover:underline hover:underline-offset-2 hover:text-primary ease-in-out duration-300">Detail</a>
                 </td>
               </tr>
             ))}
