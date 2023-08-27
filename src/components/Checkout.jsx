@@ -28,8 +28,8 @@ const Checkout = () => {
   const total = price+6
   if (user != null)
     return (
-      <div className='text-tertiary pt-[140px] grid grid-cols-2 mx-auto w-8/12'>
-        <div className="information col-span-1 border-r-4">
+      <div className='text-tertiary pt-[140px] md:grid md:grid-cols-2 mx-auto lg:w-8/12 w-10/12'>
+        <div className="information col-span-1 border-b-4 md:border-b-0 md:border-r-4">
           <h2 className='font-bold text-2xl text-center'>Your information</h2>
           <div className="form mx-6">
             <p className='my-2'>
@@ -50,7 +50,7 @@ const Checkout = () => {
             </p>
           </div>
         </div>
-        <div className="order col-span-1">
+        <div className="order col-span-1 md:mt-0 mt-4">
           <h2 className='font-bold text-2xl text-center'>Your order</h2>
           <button className="btn bg-white text-tertiary border border-[#581B28] rounded-md hover:bg-[#581B28] hover:text-[#f0d4d6] ease-in-out duration-300 font-bold block py-2 px-6 m-4"
             onClick={() => {
@@ -71,11 +71,11 @@ const Checkout = () => {
               </div>
             </div>
           ))}
-          <div className='details_total font-bold flex pt-2 border-t-2 mx-4'>
+          <div className='details_total font-bold flex py-2 border-t-2 mx-4'>
                 <p className="flex-auto">Shipping:</p>
                 <p className="text-right"> $6.00</p>
               </div>
-          <div className='details_total font-bold flex pt-2 border-t-2 mx-4 text-lg'>
+          <div className='details_total font-bold flex py-2 border-t-2 mx-4 text-lg'>
                 <p className="flex-auto">Total:</p>
                 <p className="text-right text-[#cf2e2e]"> ${total}.00</p>
               </div>

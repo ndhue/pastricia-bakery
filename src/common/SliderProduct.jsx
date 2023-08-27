@@ -58,7 +58,7 @@ export default function SliderProduct(props) {
             <img className="duration-500 ease-in-out hover:scale-105" alt={p.name} src={p.src}></img>
             <div className="detail pt-4">
               <h4 className="name leading-6 lg:leading-6 text-xl lg:text-2xl h-14 lg:h-[65px]">{p.name}</h4>
-              <p className="desc text-sm lg:text-[15px] leading-5">{p.desc}</p>
+              <p className="desc text-sm pt-3 lg:text-[15px] leading-5">{p.desc}</p>
               <h5 className="price text-base lg:text-[17px] pt-1">Starting at ${p.price}</h5>
             </div>
           </div>

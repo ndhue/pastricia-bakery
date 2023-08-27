@@ -33,8 +33,8 @@ export default function Product() {
               </div>
               <div className="right md:col-span-1 col-span-2 pt-4 md:pt-2">
                 <h1 className='text-4xl w-full md:w-1/2'>{item.name}</h1>
-                <h2 className='text-2xl py-8 font-bold'>${item.price}</h2>
-                <div className="qty py-8 flex justify-start gap-6 items-center">
+                <h2 className='text-2xl py-2 md:py-4 font-bold'>${item.price}</h2>
+                <div className="qty py-2 md:py-4 flex justify-start gap-6 items-center">
                   <div className="mr-4 font-bold text-slate-500">Quantity </div>
                   <div>
                     <button className="border border-gray-200 hover:bg-slate-100 duration-200" onClick={() => (quantity == 1 ? setQuantity(1) : setQuantity(quantity - 1))}>
