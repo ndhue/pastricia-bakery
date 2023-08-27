@@ -32,8 +32,6 @@ const userSlice = createSlice({
       state.orders.push(order)
       window.sessionStorage.setItem("orders", JSON.stringify(state.orders))
       window.sessionStorage.removeItem("carts")
-      alert("Success!")
-      window.location.assign(`/pastricia-bakery/order-history`)
     }
   }
 })
