@@ -1,12 +1,21 @@
 import React from "react";
 import { CreditCardIcon } from '@heroicons/react/24/outline';
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 export default function DetailOrder() {
+
+  const { id } = useParams()
+  const user = useSelector(state => state.userReducer.user)
+  const orders = useSelector(state => state.userReducer.orders)
+  
   return (
     <div className="text-tertiary pt-[140px]">
       <div className="title text-3xl lg:text-4xl text-center bg-secondary py-6">
         <h1>ORDER'S DETAIL</h1>
       </div>
-      <div className="my-4 max-w-7xl mx-auto px-4 text-center">
+      {orders.filter(o => o.id == id)
+      .map(order => (
+        <div key={order.id} className="my-4 max-w-7xl mx-auto px-4 text-center">
         <div className="lg:grid lg:grid-cols-5 lg:gap-6">
           <div className="lg:col-span-3">
             <table className="mx-auto w-5/6 md:w-full text-sm xs:text-base md:text-lg">
@@ -17,7 +26,7 @@ export default function DetailOrder() {
                   </th>
                   <th scope="col" className="px-4 py-3"></th>
                   <th scope="col" className="px-4 py-3">
-                    Order #O1020
+                    Order #{order.id}
                   </th>
                 </tr>
               </thead>
@@ -33,14 +42,16 @@ export default function DetailOrder() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-2">
+                {order.products.map(item => (
+                  <tr key={item.id} className="border-2">
                   <td scope="row" className="p-4  text-left">
-                    <img src="assets/products/gingerbread-cupcake.png" width="85" height="85" className="lg:inline rounded-md pb-2 lg:pb-0"></img>
-                    <span className="px-0 lg:px-2 text-sm lg:text-base">Mango Meringue Cupcake</span>
+                    <img src={item.src} width="85" height="85" className="lg:inline rounded-md pb-2 lg:pb-0"></img>
+                    <span className="px-0 lg:px-2 text-sm lg:text-base">{item.name}</span>
                   </td>
-                  <td className="p-4 text-sm">$4.00</td>
-                  <td className="p-4 text-sm">4</td>
+                  <td className="p-4 text-sm">${item.price}</td>
+                  <td className="p-4 text-sm">{item.qty}</td>
                 </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -58,21 +69,21 @@ export default function DetailOrder() {
                 <tr className="border-2">
                   <td scope="row" className="p-4">
                     <p>Subtotal:</p>
-                    <p className="text-sm">4 items</p>
+                    <p className="text-sm">{order.products.length} {order.products.length == 1 ? <span> item</span> : <span> items</span>}</p>
                   </td>
-                  <td className="p-4 text-right text-sm">$16.00</td>
+                  <td className="p-4 text-right text-sm">${order.price}</td>
                 </tr>
                 <tr className="border-2">
                   <td scope="row" className="p-4">
                     Shipping:
                   </td>
-                  <td className="p-4 text-right text-sm">$6.00</td>
+                  <td className="p-4 text-right text-sm">${order.shipping}</td>
                 </tr>
                 <tr className="border-2">
                   <td scope="row" className="p-4">
                     Total:
                   </td>
-                  <td className="p-4 text-right text-lg">$22.00</td>
+                  <td className="p-4 text-right text-lg">${order.total}</td>
                 </tr>
               </tbody>
             </table>
@@ -117,19 +128,19 @@ export default function DetailOrder() {
                 <tr className="border-2">
                   <td scope="row" className="p-4">
                     <span className="underline">Sent to:</span>
-                    <span className="info">&nbsp; Ngo Diem Hue</span>
+                    <span className="info">&nbsp; {user.fName} {user.lName}</span>
                   </td>
                 </tr>
                 <tr className="border-2">
                   <td scope="row" className="p-4">
                     <span className="underline">Phone number:</span>
-                    <span className="info">&nbsp; 012 3456 789</span>
+                    <span className="info">&nbsp; {user.phone}</span>
                   </td>
                 </tr>
                 <tr className="border-2">
                   <td scope="row" className="p-4">
                     <span className="underline">Address:</span>
-                    <span className="info">&nbsp; Quan 7, TP HCM</span>
+                    <span className="info">&nbsp; {user.address}</span>
                   </td>
                 </tr>
               </tbody>
@@ -149,7 +160,7 @@ export default function DetailOrder() {
                 <tr className="border-2">
                   <td scope="row" className="p-4">
                     <span className="underline">Status:</span>
-                    <span className="font-thin text-green-600">&nbsp; Delivered</span>
+                    {order.status != "Waiting" ? <span className="font-thin text-green-500">&nbsp; {order.status}</span> : <span className="font-thin text-yellow-500">&nbsp; {order.status}</span>}
                   </td>
                 </tr>
               </tbody>
@@ -157,6 +168,8 @@ export default function DetailOrder() {
           </div>
         </div>
       </div>
+      ))}
+      
     </div>
   );
 }

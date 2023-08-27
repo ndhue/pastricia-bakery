@@ -29,7 +29,7 @@ export default function Product() {
             </section>
             <div className="content grid grid-cols-1 md:grid-cols-2 md:gap-10">
               <div className="left md:col-span-1 col-span-2 items-center">
-                <img src={`/pastricia-bakery/${item.src}`} alt={item.name} className='w-full' />
+                <img src={item.src} alt={item.name} className='w-full' />
               </div>
               <div className="right md:col-span-1 col-span-2 pt-4 md:pt-2">
                 <h1 className='text-4xl w-full md:w-1/2'>{item.name}</h1>
@@ -37,11 +37,11 @@ export default function Product() {
                 <div className="qty py-8 flex justify-start gap-6 items-center">
                   <div className="mr-4 font-bold text-slate-500">Quantity </div>
                   <div>
-                    <button className="border border-gray-200" onClick={() => (quantity == 1 ? setQuantity(1) : setQuantity(quantity - 1))}>
+                    <button className="border border-gray-200 hover:bg-slate-100 duration-200" onClick={() => (quantity == 1 ? setQuantity(1) : setQuantity(quantity - 1))}>
                       <MinusIcon className="h-4 w-4 inline mx-2 my-1" />
                     </button>
                     <span className="text-lg mx-4"> {quantity} </span>
-                    <button className="border border-gray-200" onClick={() => setQuantity(quantity + 1)}>
+                    <button className="border border-gray-200 hover:bg-slate-100 duration-200" onClick={() => setQuantity(quantity + 1)}>
                       <PlusIcon className="h-4 w-4 inline mx-2 my-1" />
                     </button>
                   </div>
@@ -50,7 +50,6 @@ export default function Product() {
                   <button className="btn bg-[#581B28] border border-[#581B28] text-[#f0d4d6] px-6 py-4 rounded-md hover:bg-white hover:text-tertiary ease-in-out duration-300 font-bold uppercase"
                   onClick={() => addToCart(item)}
                   >Add to cart</button>
-                  <button className="btn bg-white border border-[#581B28] px-6 py-4 rounded-md hover:bg-[#581B28] hover:text-[#f0d4d6] ease-in-out duration-300 font-bold uppercase">Buy</button>
                 </div>
                 <div className="describe pt-6">
                   <p>These brand-new, festive mini vanilla and chocolate cupcakes are 

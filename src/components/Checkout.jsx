@@ -1,9 +1,91 @@
-import React from 'react'
-
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { createOrder } from '../controller/userSlice'
 const Checkout = () => {
-  return (
-    <div>Checkout</div>
-  )
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.userReducer.user)
+  const products = useSelector(state => state.cartReducer.carts)
+  const userId = user.id
+  const payment = () => {
+    dispatch(createOrder({userId,products,price,total}))
+  }
+  // total prcie
+  const [price, setPrice] = useState();
+  useEffect(() => {
+    const totals = () => {
+      let price = 0
+      products.forEach((e, i) => {
+        price = parseFloat(e.price) * e.qty + price
+      })
+      setPrice(price)
+    }
+    totals();
+  }, [products]);
+
+  const total = price+6
+  if (user != null)
+    return (
+      <div className='text-tertiary pt-[140px] grid grid-cols-2 mx-auto w-8/12'>
+        <div className="information col-span-1 border-r-4">
+          <h2 className='font-bold text-2xl text-center'>Your information</h2>
+          <div className="form mx-6">
+            <p className='my-2'>
+              <span className='font-bold text-lg mr-4'>Name:</span>
+              <span className='text-[17px]'> {user.fName} {user.lName}</span>
+            </p>
+            <p className='my-2'>
+              <span className='font-bold text-lg mr-4'>Email:</span>
+              <span className='text-[17px]'> {user.email}</span>
+            </p>
+            <p className='my-2'>
+              <span className='font-bold text-lg mr-4'>Phone:</span>
+              <span className='text-[17px]'> {user.address}</span>
+            </p>
+            <p className='my-2'>
+              <span className='font-bold text-lg mr-4'>Expected date:</span>
+              <span className='text-[17px]'> 00/00/0000 </span>
+            </p>
+          </div>
+        </div>
+        <div className="order col-span-1">
+          <h2 className='font-bold text-2xl text-center'>Your order</h2>
+          <button className="btn bg-white text-tertiary border border-[#581B28] rounded-md hover:bg-[#581B28] hover:text-[#f0d4d6] ease-in-out duration-300 font-bold block py-2 px-6 m-4"
+            onClick={() => {
+              navigate("/pastricia-bakery/products");
+            }}
+          >
+            Products</button>
+
+          {products.map(e => (
+            <div key={e.id} className="item flex items-center m-4">
+              <div className="image flex-1">
+                <img src={e.src} width="120" height="120" className="rounded-md"></img>
+              </div>
+              <div className="desc pl-6 w-[180px] flex-1">
+                <h4 className="font-bold text-lg">{e.name}</h4>
+                <p>Price: ${e.price}</p>
+                <p>Quantity: {e.qty}</p>
+              </div>
+            </div>
+          ))}
+          <div className='details_total font-bold flex pt-2 border-t-2 mx-4'>
+                <p className="flex-auto">Shipping:</p>
+                <p className="text-right"> $6.00</p>
+              </div>
+          <div className='details_total font-bold flex pt-2 border-t-2 mx-4 text-lg'>
+                <p className="flex-auto">Total:</p>
+                <p className="text-right text-[#cf2e2e]"> ${total}.00</p>
+              </div>
+              <button onClick={() => payment()} className="btn bg-[#581B28] border border-[#581B28] text-[#f0d4d6] rounded hover:bg-white hover:text-tertiary ease-in-out duration-300 font-bold block py-2 px-4 mt-2 mr-2 ml-auto">Complete your payment</button>
+        </div>
+      </div>
+    )
+  else {
+    window.location.assign('/pastricia-bakery/sign-in');
+  }
 }
 
 export default Checkout

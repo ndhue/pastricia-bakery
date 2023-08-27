@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
 
 export default function SignUp() {
   const [email, setEmail] = useState('')
@@ -9,8 +8,7 @@ export default function SignUp() {
   const [lName, setLName] = useState('')
   const [address, setAddress] = useState('')
   const [city, setCity] = useState('')
-
-  const dispatch = useDispatch();
+  const [phone, setPhone] = useState(0)
 
   const initialValid = {
     errors: {
@@ -42,6 +40,7 @@ export default function SignUp() {
       addressValid,
       cityValid,
       cfpwdValid,
+      phoneValid,
       formValid,
     } = valid;
     switch (name) {
@@ -82,7 +81,18 @@ export default function SignUp() {
         }
         break;
       }
-
+      case "phone": {
+        phoneValid = mess === "" ? true : false;
+        let pattern =
+          /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+        if (value && !value.match(pattern)) {
+          phoneValid = false;
+          mess = "Your phone seems invalid";
+        } else {
+          phoneValid = true;
+        }
+        break;
+      }
       case "address" & "city": {
         addressValid = mess === "" ? true : false;
         cityValid = mess === "" ? true : false;
@@ -91,7 +101,7 @@ export default function SignUp() {
       default:
         break;
     }
-    formValid = emailValid & passwordValid & fullnameValid & addressValid & cityValid & cfpwdValid;
+    formValid = emailValid & passwordValid & fullnameValid & addressValid & cityValid & cfpwdValid & phoneValid;
     setValid({
       formValid,
       emailValid,
@@ -100,6 +110,7 @@ export default function SignUp() {
       addressValid,
       cityValid,
       cfpwdValid,
+      phoneValid,
       errors: { ...valid.errors, [name]: mess },
     });
   };
@@ -116,6 +127,7 @@ export default function SignUp() {
               <input
                 type="text"
                 name="fName"
+                id="fName"
                 onChange={e => setFName(e.target.value)}
                 onBlur={handleErrors}
                 className="mt-2 block w-full border border-slate-300 rounded-md p-3 shadow-sm focus:outline-none focus:border-primary focus:ring-secondary focus:ring-1"
@@ -132,6 +144,7 @@ export default function SignUp() {
               <input
                 type="text"
                 name="lName"
+                id="last-name"
                 onChange={e => setLName(e.target.value)}
                 onBlur={handleErrors}
                 className="mt-2 block w-full border border-slate-300 rounded-md p-3 shadow-sm focus:outline-none focus:border-primary focus:ring-secondary focus:ring-1"
@@ -141,13 +154,14 @@ export default function SignUp() {
               )}
             </div>
 
-            <div className="col-span-2">
+            <div className="col-span-1">
               <label htmlFor="email-address" className="block">
                 Email address
               </label>
               <input
                 type="text"
                 name="email"
+                id="email-address"
                 onChange={e => setEmail(e.target.value)}
                 onBlur={handleErrors}
                 className="mt-2 block w-full border border-slate-300 rounded-md p-3 shadow-sm focus:outline-none focus:border-primary focus:ring-secondary focus:ring-1"
@@ -158,12 +172,30 @@ export default function SignUp() {
             </div>
 
             <div className="col-span-1">
+              <label htmlFor="phone" className="block">
+                Phone number
+              </label>
+              <input
+                type="text"
+                name="phone"
+                id="phone"
+                onChange={e => setPhone(e.target.value)}
+                onBlur={handleErrors}
+                className="mt-2 block w-full border border-slate-300 rounded-md p-3 shadow-sm focus:outline-none focus:border-primary focus:ring-secondary focus:ring-1"
+              />
+              {valid.errors.phone && (
+              <div className="text-red-500 text-sm pt-1 font-serif">{valid.errors.phone}</div>
+              )}
+            </div>
+
+            <div className="col-span-1">
               <label htmlFor="password" className="block">
                 Password
               </label>
               <input
                 type="password"
                 name="password"
+                id="password"
                 onChange={e => setPassword(e.target.value)}
                 onBlur={handleErrors}
                 className="mt-2 block w-full border border-slate-300 rounded-md p-3 shadow-sm focus:outline-none focus:border-primary focus:ring-secondary focus:ring-1"
@@ -180,6 +212,7 @@ export default function SignUp() {
               <input
                 type="password"
                 name="confirmPassword"
+                id="confirmPassword"
                 onChange={e => setCfPassword(e.target.value)}
                 onBlur={handleErrors}
                 className="mt-2 block w-full border border-slate-300 rounded-md p-3 shadow-sm focus:outline-none focus:border-primary focus:ring-secondary focus:ring-1"
@@ -196,6 +229,7 @@ export default function SignUp() {
               <input
                 type="text"
                 name="address"
+                id="street-address"
                 onChange={e => setAddress(e.target.value)}
                 onBlur={handleErrors}
                 className="mt-2 block w-full border border-slate-300 rounded-md p-3 shadow-sm focus:outline-none focus:border-primary focus:ring-secondary focus:ring-1"
@@ -212,6 +246,7 @@ export default function SignUp() {
               <input
                 type="text"
                 name="city"
+                id="city"
                 onChange={e => setCity(e.target.value)}
                 onBlur={handleErrors}
                 className="mt-2 block w-full border border-slate-300 rounded-md p-3 shadow-sm focus:outline-none focus:border-primary focus:ring-secondary focus:ring-1"

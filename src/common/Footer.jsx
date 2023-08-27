@@ -8,7 +8,7 @@ export default function Footer() {
 		<div className="lg:w-1/3">
 			<Link rel="noopener noreferrer" to="/pastricia-bakery" className="flex justify-center space-x-3 lg:justify-start">
 				<div className="flex items-center justify-center w-20 h-20 rounded-full">
-                      <img alt="logo" src="assets/img/Logo.png"/>
+                      <img alt="logo" src="/pastricia-bakery/assets/img/Logo.png"/>
 				</div>
 				<span className="self-center text-2xl font-semibold">Pastrica Bakery</span>
 			</Link>

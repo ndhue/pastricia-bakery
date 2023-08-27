@@ -3,6 +3,9 @@ import { Provider } from 'react-redux';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import Navbar from "./common/Navbar";
 import Newsletter from "./common/Newsletter";
 import Footer from "./common/Footer";
@@ -25,13 +28,13 @@ import { ScrollToTop } from './common/ScrollToTop';
 
 
 import store from "./controller/store"
+import { useEffect } from 'react';
 const routesUser = [
   { path: "/pastricia-bakery", component: <Home /> },
   { path: "/pastricia-bakery/sign-in", component: <SignIn /> },
   { path: "/pastricia-bakery/sign-up", component: <SignUp /> },
   { path: "/pastricia-bakery/account", component: <Account /> },
   { path: "/pastricia-bakery/order-history", component: <OrderHistory /> },
-  { path: "/pastricia-bakery/detail-order", component: <DetailOrder /> },
   { path: "/pastricia-bakery/products", component: <ProductsList /> },
   { path: "/pastricia-bakery/news&promotion", component: <NewsAndPromotions /> },
   { path: "/pastricia-bakery/visit-us", component: <VisitUs /> },
@@ -45,6 +48,14 @@ const renderRoutesUser = () => {
 };
 
 function App() {
+  useEffect(() => {
+    // init AOS animation
+    AOS.init({
+      duration: 1000,
+      offset: 100,
+    });
+    AOS.refresh();
+  },[])
   return (
     <Provider store={store}>
       <BrowserRouter>
@@ -54,6 +65,7 @@ function App() {
             {renderRoutesUser()}
             <Route path='/pastricia-bakery/*' element={<PageNotFound />} />
             <Route path='/pastricia-bakery/:id' element={<Product />} />
+            <Route path='/pastricia-bakery/detail-order/:id' element={<DetailOrder />} />
             <Route path='/pastricia-bakery/:category' element={<ProductsByCategory />} />
           </Routes>
         </ScrollToTop>

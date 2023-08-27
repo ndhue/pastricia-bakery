@@ -1,7 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function OrderHistory() {
+
+  const orders = useSelector(state => state.userReducer.orders)
+
   return (
     <div className="text-tertiary pt-[140px]">
       <div className="title text-3xl lg:text-4xl text-center bg-secondary py-6">
@@ -20,15 +24,19 @@ export default function OrderHistory() {
             </tr>
           </thead>
           <tbody>
-            <tr className="border-2">
-            <td scope="row" className="px-6 py-4">12/04/2022</td>
-              <td className="px-6 py-4">#O101</td>
-              <td className="px-6 py-4">$80.00</td>
-              <td className="px-6 py-4 text-green-400">Delivered</td>
-              <td className="px-6 py-4">
-                <Link to="/pastricia-bakery/detail-order" className="hover:underline hover:underline-offset-2 hover:text-primary ease-in-out duration-300">Detail</Link>
-              </td>
-            </tr>
+            {orders.map(order => (
+              <tr key={order.id} className="border-2">
+
+                <td scope="row" className="px-6 py-4">12/04/2022</td>
+                <td className="px-6 py-4">#{order.id}</td>
+                <td className="px-6 py-4">${order.total}.00</td>
+                {order.status != "Waiting" ? <td className="px-6 py-4 text-green-500">{order.status}</td> : <td className="px-6 py-4 text-yellow-500">{order.status}</td>}
+                <td className="px-6 py-4">
+                  <Link to={`/pastricia-bakery/detail-order/${order.id}`} className="hover:underline hover:underline-offset-2 hover:text-primary ease-in-out duration-300">Detail</Link>
+                </td>
+              </tr>
+            ))}
+
           </tbody>
         </table>
       </div>

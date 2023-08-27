@@ -11,7 +11,7 @@ const navigation = [
   { name: "OUR PRODUCT", href: "/pastricia-bakery/products" },
   { name: "NEW & PROMOTION", href: "/pastricia-bakery/news&promotion" },
   { name: "VISIT US", href: "/pastricia-bakery/visit-us" },
-  { name: "ABOUT US", href: "/pastricia-bakery/about-us" },
+  { name: "ABOUT US", href: "/pastricia-bakery/visit-us" },
 ];
 
 function classNames(...classes) {
@@ -132,7 +132,7 @@ export default function Navbar() {
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static lg:inset-auto lg:ml-6 lg:pr-0">
                   <Link
-                    to="/pastricia-bakery/about-us"
+                    to="/pastricia-bakery/visit-us"
                     className="relative lg:block hidden bg-secondary hover:bg-primary rounded-sm px-4 py-2 font-medium ease-in-out duration-300"
                   >
                     ABOUT US
@@ -241,9 +241,10 @@ export default function Navbar() {
                       
                     </Transition>
                   </Menu>
+                  {/* CART */}
                   <div onClick={toggleCart} className="cursor-pointer ml-3 bg-dark rounded-full text-white h-8 w-8 flex">
-                    <a href="#" role="button" className="relative flex">
-                      <svg className="flex-1 w-8 h-8 fill-current" viewBox="0 0 24 24">
+                    <a role="button" className="relative flex items-center pl-[2px]">
+                      <svg className="flex-1 w-7 h-7 fill-current" viewBox="0 0 24 24">
                         <path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" />
                       </svg>
                       {getData.length !== 0 ? (
@@ -304,12 +305,14 @@ export default function Navbar() {
       {/* CART */}
       <div ref={ref} className="sidebar absolute right-0 top-0 bg-white transition-transform translate-x-full duration-500 w-[355px] h-[100vh]">
         <div className="button text-[17px] my-6">
-          <button onClick={toggleCart} className="btn bg-[#581B28] border border-[#581B28] text-[#f0d4d6] rounded-xl hover:bg-white hover:text-tertiary ease-in-out duration-300 font-bold block py-3 xs:w-40 w-52 my-4 mx-auto">Continue Shopping</button>
-          <button className="btn bg-white text-tertiary border border-[#581B28] rounded-xl hover:bg-[#581B28] hover:text-[#f0d4d6] ease-in-out duration-300 font-bold block py-3 xs:w-40 w-52 mt-4 mx-auto"
+          <button onClick={toggleCart} className="btn bg-[#581B28] border border-[#581B28] text-[#f0d4d6] rounded-xl hover:bg-white hover:text-tertiary ease-in-out duration-500 font-bold block py-3 xs:w-40 w-52 my-4 mx-auto">Continue Shopping</button>
+          <button className="btn bg-white text-tertiary border border-[#581B28] rounded-xl hover:bg-[#581B28] hover:text-[#f0d4d6] ease-in-out duration-500 font-bold block py-3 xs:w-40 w-52 mt-4 mx-auto"
             onClick={() => {
               navigate("/pastricia-bakery/checkout");
               toggleCart();
-            }}>
+            }}
+            disabled={(getData.length !== 0) ? false : true}
+            >
             $$ Checkout</button>
         </div>
         <div className="items pt-2 mx-4 text-tertiary border-t-2">
@@ -326,16 +329,16 @@ export default function Navbar() {
                       <h4 className="font-bold">{e.name}</h4>
                       <p className="text-sm">${e.price}</p>
                       <div className="pt-2">
-                        <button className="border border-gray-200" onClick={e.qty <= 1 ? () => deletes(e.id) : () => decrement(e)}>
+                        <button className="border border-gray-200 hover:bg-slate-100 duration-200" onClick={e.qty <= 1 ? () => deletes(e.id) : () => decrement(e)}>
                           <MinusIcon className="h-3 w-3 inline mx-2 my-1" />
                         </button>
                         <span className="mx-4"> {e.qty} </span>
-                        <button className="border border-gray-200" onClick={() => increment(e)}>
+                        <button className="border border-gray-200 hover:bg-slate-100 duration-200" onClick={() => increment(e)}>
                           <PlusIcon className="h-3 w-3 inline mx-2 my-1" />
                         </button>
                       </div>
                     </div>
-                    <button className="text-red-700" onClick={() => { delet(e.id) }}>
+                    <button className="hover:text-red-900 duration-200 text-red-700" onClick={() => { delet(e.id) }}>
                       <TrashIcon className="h-6 w-6" />
                     </button>
                   </div>

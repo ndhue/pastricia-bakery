@@ -5,7 +5,8 @@ export default function SignIn() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch();
-  const auth = () => {
+  const auth = (e) => {
+    e.preventDefault();
     dispatch(isLogin({email, password}))
   }
 
@@ -67,7 +68,7 @@ export default function SignIn() {
   return (
     <div className='text-tertiary pt-[140px] login md:grid md:grid-cols-2 mx-10 lg:gap-24'>
       <div className="form col-span-1 mx-2 border-2 border-tertiary-400">
-        <div className='my-10 mx-16'>
+        <form onSubmit={auth} className='my-10 mx-16'>
           <h1 className='text-6xl font-bold text-center'>Sign in</h1>
           <div className="my-4">
             <label htmlFor="email-address" className="block">
@@ -103,11 +104,11 @@ export default function SignIn() {
               )}
           </div>
           <button className='border-2 rounded border-gray-500 py-2 px-6 font-bold my-2 mr-0 ml-auto block'
-          onClick={()=> auth()}
+          type="submit"
           >SIGN IN</button>
           <a href='#' className='block underline text-right my-1'>Forgot your password?</a>
           <a href='/pastricia-bakery/sign-up' className='block underline text-right my-1'>Create account</a>
-        </div>
+        </form>
       </div>
       <div className="logo col-span-1 mx-auto w-3/4 md:inline-block hidden">
         <img className='' src="assets/img/logo-no-background.png" alt="" />

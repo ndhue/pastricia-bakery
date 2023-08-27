@@ -35,23 +35,23 @@ export default function Home() {
       <div className="carousel">
         <Slider {...settings}>{renderSlider()}</Slider>
       </div>
-      <div className="type">
+      <div data-aos="zoom-in" className="type">
         <Type />
       </div>
-      <div className="best_seller bg-primary">
+      <div data-aos="fade-up" className="best_seller bg-primary">
         <SliderProduct
           name="BEST SELLERS"
           description="From classic cupcakes and layer cakes to rich banana pudding, our best sellers are a great place to begin your Pastricia experience."
           listProduct={listItem}
-          note="best seller"
+          note="best-seller"
         />
       </div>
-      <div className="new_products">
+      <div data-aos="fade-up" className="new_products">
         <SliderProduct
           name="NEW PRODUCTS"
           description=""
           listProduct={listItem}
-          note="new products"
+          note="new-products"
         />
       </div>
     </div>

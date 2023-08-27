@@ -29,6 +29,7 @@ export default function Account() {
                         <input
                           type="text"
                           name="fName"
+                          id="first-name" 
                           value={user.fName}
                           className="mt-2 block w-full border border-slate-300 rounded-md p-3 shadow-sm focus:outline-none focus:border-primary focus:ring-secondary focus:ring-1"
                           disabled
@@ -42,6 +43,7 @@ export default function Account() {
                         <input
                           type="text"
                           name="lName"
+                          id="last-name"
                           value={user.lName}
                           className="mt-2 block w-full border border-slate-300 rounded-md p-3 shadow-sm focus:outline-none focus:border-primary focus:ring-secondary focus:ring-1"
                           disabled
@@ -55,6 +57,7 @@ export default function Account() {
                         <input
                           type="text"
                           name="email"
+                          id="email-address" 
                           value={user.email}
                           className="mt-2 block w-full border border-slate-300 rounded-md p-3 shadow-sm focus:outline-none focus:border-primary focus:ring-secondary focus:ring-1"
                           disabled
@@ -62,13 +65,14 @@ export default function Account() {
                       </div>
 
                       <div className="col-span-6 sm:col-span-3">
-                        <label htmlFor="pwd" className="block">
-                          Password
+                        <label htmlFor="number" className="block">
+                          Phone number
                         </label>
                         <input
-                          type="password"
-                          name="pwd"
-                          value={user.pwd}
+                          type="number"
+                          name="number"
+                          id="number"
+                          value={user.phone}
                           className="mt-2 block w-full border border-slate-300 rounded-md p-3 shadow-sm focus:outline-none focus:border-primary focus:ring-secondary focus:ring-1"
                           disabled
                         />
@@ -81,6 +85,7 @@ export default function Account() {
                         <input
                           type="text"
                           name="address"
+                          id="street-address"
                           value={user.address}
                           className="mt-2 block w-full border border-slate-300 rounded-md p-3 shadow-sm focus:outline-none focus:border-primary focus:ring-secondary focus:ring-1"
                           disabled
@@ -94,6 +99,7 @@ export default function Account() {
                         <input
                           type="text"
                           name="city"
+                          id="city"
                           value={user.city}
                           className="mt-2 block w-full border border-slate-300 rounded-md p-3 shadow-sm focus:outline-none focus:border-primary focus:ring-secondary focus:ring-1"
                           disabled

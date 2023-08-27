@@ -55,7 +55,7 @@ export default function SliderProduct(props) {
           key={index}
           className="col-span-2 w-full lg:col-span-1 mx-3">
           <div className="px-4">
-            <img alt={p.name} src={p.src}></img>
+            <img className="duration-500 ease-in-out hover:scale-105" alt={p.name} src={p.src}></img>
             <div className="detail pt-4">
               <h4 className="name leading-6 lg:leading-6 text-xl lg:text-2xl h-14 lg:h-[65px]">{p.name}</h4>
               <p className="desc text-sm lg:text-[15px] leading-5">{p.desc}</p>
@@ -80,8 +80,8 @@ export default function SliderProduct(props) {
           <p className="absolute inset-x-[25%] mx-auto w-[110px] text-center pt-3 underline underline-offset-2 hover:text-black ease-in-out duration-300">
             <Link to={`/pastricia-bakery/${checkPath()}`}>VIEW MORE</Link></p>
           <div className="absolute right-10">
-            <button onClick={previous}> <ArrowLeftCircleIcon className="block h-10 w-10" /> </button>
-            <button onClick={next}> <ArrowRightCircleIcon className="block h-10 w-10" /> </button>
+            <button onClick={previous} className="hover:text-gray-500 duration-200"> <ArrowLeftCircleIcon className="block h-10 w-10" /> </button>
+            <button onClick={next} className="hover:text-gray-500 duration-200"> <ArrowRightCircleIcon className="block h-10 w-10" /> </button>
           </div>
           <Slider className="mt-14" {...settings} ref={slider}>
             {renderProduct()}

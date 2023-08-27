@@ -7,10 +7,10 @@ export default function ProductsList() {
   return (
     <div className="text-tertiary">
       <div className="container-fluid mx-auto">
-        <div className="type pt-16">
+        <div data-aos="zoom-in" className="type pt-16">
           <Type />
         </div>
-        <div className="cookies bg-primary">
+        <div data-aos="fade-up" className="cookies bg-primary">
           <SliderProduct
             name="COOKIES"
             description=""
@@ -18,7 +18,7 @@ export default function ProductsList() {
             type="cookies"
           />
         </div>
-        <div className="cupcakes bg-white">
+        <div data-aos="fade-up" className="cupcakes bg-white">
           <SliderProduct
             name="CUPCAKES"
             description=""
@@ -26,7 +26,7 @@ export default function ProductsList() {
             type="cupcakes"
           />
         </div>
-        <div className="cheesecakes bg-primary">
+        <div data-aos="fade-up" className="cheesecakes bg-primary">
         <SliderProduct
             name="CHEESECAKES"
             description=""
@@ -34,7 +34,7 @@ export default function ProductsList() {
             type="cheesecakes"
           />=
         </div>
-        <div className="cakes bg-white">
+        <div data-aos="fade-up" className="cakes bg-white">
           <SliderProduct
             name="CAKES"
             description=""
@@ -42,7 +42,7 @@ export default function ProductsList() {
             type="cakes"
           />
         </div>
-        <div className="choux bg-primary">
+        <div data-aos="fade-up" className="choux bg-primary">
           <SliderProduct
             name="CHOUX CREAM"
             description=""
@@ -50,7 +50,7 @@ export default function ProductsList() {
             type="choux"
           />
         </div>
-        <div className="donuts bg-white">
+        <div data-aos="fade-up" className="donuts bg-white">
           <SliderProduct
             name="DONUTS"
             description=""
