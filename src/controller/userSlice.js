@@ -28,12 +28,12 @@ const userSlice = createSlice({
     },
     createOrder: (state, action) => {
       const id =  Date.now()
-      const order = { id: id, ...action.payload,shipping: 6, status: "Waiting"};
+      const order = { id: id, ...action.payload,shipping: 6, status: "Waiting", date: new Date().toLocaleDateString()};
       state.orders.push(order)
       window.sessionStorage.setItem("orders", JSON.stringify(state.orders))
       window.sessionStorage.removeItem("carts")
       alert("Success!")
-      window.location.assign(`/pastricia-bakery/detail-order/${id}`)
+      window.location.assign(`/pastricia-bakery/order-history`)
     }
   }
 })

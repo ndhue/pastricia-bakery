@@ -27,7 +27,7 @@ export default function OrderHistory() {
             {orders.map(order => (
               <tr key={order.id} className="border-2">
 
-                <td scope="row" className="px-6 py-4">12/04/2022</td>
+                <td scope="row" className="px-6 py-4">{order.date}</td>
                 <td className="px-6 py-4">#{order.id}</td>
                 <td className="px-6 py-4">${order.total}.00</td>
                 {order.status != "Waiting" ? <td className="px-6 py-4 text-green-500">{order.status}</td> : <td className="px-6 py-4 text-yellow-500">{order.status}</td>}

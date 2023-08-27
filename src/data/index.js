@@ -104,7 +104,8 @@ export const orders = [
     price: 24,
     total: 30,
     shipping: 6,
-    status: 'Delivered'
+    status: 'Delivered',
+    date:'8/12/2023'
   }
 ]
 
