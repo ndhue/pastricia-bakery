@@ -26,7 +26,6 @@ const Checkout = () => {
   }, [products]);
 
   const total = price+6
-  if (user != null)
     return (
       <div className='text-tertiary pt-[140px] md:grid md:grid-cols-2 mx-auto lg:w-8/12 w-10/12'>
         <div className="information col-span-1 border-b-4 md:border-b-0 md:border-r-4">
@@ -83,9 +82,6 @@ const Checkout = () => {
         </div>
       </div>
     )
-  else {
-    window.location.assign('/pastricia-bakery/sign-in');
-  }
 }
 
 export default Checkout

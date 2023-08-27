@@ -308,7 +308,7 @@ export default function Navbar() {
           <button onClick={toggleCart} className="btn bg-[#581B28] border border-[#581B28] text-[#f0d4d6] rounded-xl hover:bg-white hover:text-tertiary ease-in-out duration-500 font-bold block py-3 xs:w-40 w-52 my-4 mx-auto">Continue Shopping</button>
           <button className="btn bg-white text-tertiary border border-[#581B28] rounded-xl hover:bg-[#581B28] hover:text-[#f0d4d6] ease-in-out duration-500 font-bold block py-3 xs:w-40 w-52 mt-4 mx-auto"
             onClick={() => {
-              navigate("/pastricia-bakery/checkout");
+              user ? navigate("/pastricia-bakery/checkout") : navigate("/pastricia-bakery/sign-in")
               toggleCart();
             }}
             disabled={(getData.length !== 0) ? false : true}
