@@ -13,7 +13,6 @@ const Checkout = () => {
     dispatch(createOrder({userId,products,price,total}))
     alert("Success!")
     navigate(`/pastricia-bakery/order-history`)
-    location.reload()
   }
   // total prcie
   const [price, setPrice] = useState();
