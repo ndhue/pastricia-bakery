@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { createOrder } from '../controller/userSlice'
+import { deleteCart } from '../controller/cartSlice'
 const Checkout = () => {
 
   const navigate = useNavigate();
@@ -11,8 +12,9 @@ const Checkout = () => {
   const userId = user.id
   const payment = () => {
     dispatch(createOrder({userId,products,price,total}))
+    dispatch(deleteCart())
     alert("Success!")
-    window.location.assign(`/pastricia-bakery/order-history`)
+    navigate(`/pastricia-bakery/order-history`)
   }
   // total prcie
   const [price, setPrice] = useState();

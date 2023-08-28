@@ -40,9 +40,12 @@ const cartSlice = createSlice({
         state.carts.push(temp);
       }
       window.sessionStorage.setItem("carts", JSON.stringify(state.carts))
+    },
+    deleteCart:(state, action)=> {
+      state.carts = []
     }
   },
 });
 
-export const { addItem, removeItem, remove, updateItemQuantity } = cartSlice.actions;
+export const { addItem, removeItem, remove, updateItemQuantity, deleteCart } = cartSlice.actions;
 export default cartSlice.reducer;
