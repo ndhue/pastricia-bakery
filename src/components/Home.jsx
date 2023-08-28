@@ -43,7 +43,6 @@ export default function Home() {
           name="BEST SELLERS"
           description="From classic cupcakes and layer cakes to rich banana pudding, our best sellers are a great place to begin your Pastricia experience."
           listProduct={listItem}
-          note="best-seller"
         />
       </div>
       <div data-aos="fade-up" className="new_products">
@@ -51,7 +50,6 @@ export default function Home() {
           name="NEW PRODUCTS"
           description=""
           listProduct={listItem}
-          note="new-products"
         />
       </div>
     </div>

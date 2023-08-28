@@ -20,7 +20,6 @@ import ProductsList from './components/ProductsList';
 import PageNotFound from './components/PageNotFound';
 import NewsAndPromotions from './components/NewsAndPromotions';
 import VisitUs from './components/VisitUs';
-import ProductsByCategory from './components/ProductsByCategory';
 import Product from './components/Product';
 import Checkout from './components/Checkout';
 
@@ -66,7 +65,6 @@ function App() {
             <Route path='/pastricia-bakery/*' element={<PageNotFound />} />
             <Route path='/pastricia-bakery/:id' element={<Product />} />
             <Route path='/pastricia-bakery/detail-order/:id' element={<DetailOrder />} />
-            <Route path='/pastricia-bakery/:category' element={<ProductsByCategory />} />
           </Routes>
         </ScrollToTop>
         <Newsletter />

@@ -6,12 +6,7 @@ export default function SliderProduct(props) {
   const name = props.name;
   const description = props.description;
   const listProduct = props.listProduct;
-  const productType = props.type;
-  const note = props.note;
 
-  const checkPath = () => {
-    return (productType!=null)?productType:note;
-  }
   const slider = useRef(null);
 
   const next = () => {
@@ -44,10 +39,7 @@ export default function SliderProduct(props) {
   };
 
   const renderProduct = () => {
-    return listProduct?.filter(item => {
-      if(note != null) return item.note === note;
-      if(productType != null) return item.type == productType;
-    })
+    return listProduct
     .map((p, index) => {
       return (
         <Link
@@ -78,7 +70,7 @@ export default function SliderProduct(props) {
             </p>
           </div>
           <p className="absolute inset-x-[25%] mx-auto w-[110px] text-center pt-3 underline underline-offset-2 hover:text-black ease-in-out duration-300">
-            <Link to={`/pastricia-bakery/${checkPath()}`}>VIEW MORE</Link></p>
+            <Link to={`/pastricia-bakery/products`}>VIEW MORE</Link></p>
           <div className="absolute right-10">
             <button onClick={previous} className="hover:text-gray-500 duration-200"> <ArrowLeftCircleIcon className="block h-10 w-10" /> </button>
             <button onClick={next} className="hover:text-gray-500 duration-200"> <ArrowRightCircleIcon className="block h-10 w-10" /> </button>

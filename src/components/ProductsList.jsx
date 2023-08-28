@@ -15,7 +15,6 @@ export default function ProductsList() {
             name="COOKIES"
             description=""
             listProduct={listItem}
-            type="cookies"
           />
         </div>
         <div data-aos="fade-up" className="cupcakes bg-white">
@@ -23,7 +22,6 @@ export default function ProductsList() {
             name="CUPCAKES"
             description=""
             listProduct={listItem}
-            type="cupcakes"
           />
         </div>
         <div data-aos="fade-up" className="cheesecakes bg-primary">
@@ -31,15 +29,13 @@ export default function ProductsList() {
             name="CHEESECAKES"
             description=""
             listProduct={listItem}
-            type="cheesecakes"
-          />=
+          />
         </div>
         <div data-aos="fade-up" className="cakes bg-white">
           <SliderProduct
             name="CAKES"
             description=""
             listProduct={listItem}
-            type="cakes"
           />
         </div>
         <div data-aos="fade-up" className="choux bg-primary">
@@ -47,7 +43,6 @@ export default function ProductsList() {
             name="CHOUX CREAM"
             description=""
             listProduct={listItem}
-            type="choux"
           />
         </div>
         <div data-aos="fade-up" className="donuts bg-white">
@@ -55,7 +50,6 @@ export default function ProductsList() {
             name="DONUTS"
             description=""
             listProduct={listItem}
-            type="donuts"
           />
         </div>
       </div>

@@ -91,29 +91,8 @@ export default function Account() {
                           disabled
                         />
                       </div>
-
-                      <div className="col-span-6 sm:col-span-3">
-                        <label htmlFor="city" className="block">
-                          City
-                        </label>
-                        <input
-                          type="text"
-                          name="city"
-                          id="city"
-                          value={user.city}
-                          className="mt-2 block w-full border border-slate-300 rounded-md p-3 shadow-sm focus:outline-none focus:border-primary focus:ring-secondary focus:ring-1"
-                          disabled
-                        />
-                      </div>
                     </div>
                   ) : (<></>)}
-                </div>
-                <div className="px-4 pb-5 text-right sm:px-6">
-                  <button
-                    className="inline-flex justify-center rounded-md bg-secondary py-2 px-3 text-white shadow-sm hover:bg-primary ease-in-out duration-300"
-                  >
-                    Save
-                  </button>
                 </div>
               </div>
             </form>

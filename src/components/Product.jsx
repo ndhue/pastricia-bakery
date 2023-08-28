@@ -24,7 +24,7 @@ export default function Product() {
               <div className="header py-2">
                 <Link to="/pastricia-bakery/products" className='hover:underline hover:underline-offset-2 hover:text-primary ease-in-out duration-300'>OUR PRODUCTS</Link>
                 <ChevronRightIcon className="h-7 w-7 inline pb-1" />
-                <Link to={`/pastricia-bakery/${item.type}`} className='hover:underline hover:underline-offset-2 hover:text-primary ease-in-out duration-300 uppercase'>{item.type}</Link>
+                <span className='uppercase'>{item.type}</span>
               </div>
             </section>
             <div className="content grid grid-cols-1 md:grid-cols-2 md:gap-10">
