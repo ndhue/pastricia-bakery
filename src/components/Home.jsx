@@ -42,14 +42,14 @@ export default function Home() {
         <SliderProduct
           name="BEST SELLERS"
           description="From classic cupcakes and layer cakes to rich banana pudding, our best sellers are a great place to begin your Pastricia experience."
-          listProduct={listItem}
+          listProduct={listItem?.filter(item => item.note == "best-seller")}
         />
       </div>
       <div data-aos="fade-up" className="new_products">
         <SliderProduct
           name="NEW PRODUCTS"
           description=""
-          listProduct={listItem}
+          listProduct={listItem?.filter(item => item.note == "new-products")}
         />
       </div>
     </div>
