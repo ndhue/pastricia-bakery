@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function SignUp() {
+export const SignUp = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setCfPassword] = useState('')
@@ -259,7 +259,7 @@ export default function SignUp() {
           <button className='border-2 rounded border-gray-500 py-2 px-6 font-bold my-2 mr-0 ml-auto block'
           >CREATE</button>
           <span className='block text-right my-1'>If you already have an account,
-            <a href='/pastricia-bakery/sign-in' className='underline'> sign in here</a>
+            <a href='/sign-in' className='underline'> sign in here</a>
           </span>
         </div>
       </div>

@@ -1,10 +1,10 @@
 import React from "react";
 import Slider from "react-slick";
-import SliderProduct from "../common/SliderProduct";
-import Type from "../common/Type";
+import SliderProduct from "../components/SliderProduct";
+import Type from "../components/Type";
 import { sliders } from "../data";
 import { listItem } from "../data";
-export default function Home() {
+export const Home = () => {
   const settings = {
     accessibility: false,
     touchMove: false,

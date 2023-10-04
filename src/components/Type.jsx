@@ -6,7 +6,7 @@ export default function Type() {
     return listTypes.map((type, index) => {
       return (
         <Link
-          to={`/pastricia-bakery/products`}
+          to={`/products`}
           key={index}
           className="col-span-2 w-full lg:col-span-1 text-center"
         >

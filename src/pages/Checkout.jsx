@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { createOrder } from '../controller/userSlice'
 import { deleteCart } from '../controller/cartSlice'
-const Checkout = () => {
+export const Checkout = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ const Checkout = () => {
           <h2 className='font-bold text-2xl text-center'>Your order</h2>
           <button className="btn bg-white text-tertiary border border-[#581B28] rounded-md hover:bg-[#581B28] hover:text-[#f0d4d6] ease-in-out duration-300 font-bold block py-2 px-6 m-4"
             onClick={() => {
-              navigate("/pastricia-bakery/products");
+              navigate("/products");
             }}
           >
             Products</button>
@@ -87,5 +87,3 @@ const Checkout = () => {
       </div>
     )
 }
-
-export default Checkout

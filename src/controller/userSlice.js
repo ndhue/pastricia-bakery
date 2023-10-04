@@ -13,24 +13,20 @@ const userSlice = createSlice({
     isLogin: (state, action) => {
       const user = users.find(u => u.email === action.payload.email && u.pwd == action.payload.password)
       if (user !== undefined) {
-        window.sessionStorage.setItem("user", JSON.stringify(user))
-        window.sessionStorage.getItem("carts") ? JSON.parse(window.sessionStorage.getItem("carts")) : []
-        window.sessionStorage.setItem("orders", JSON.stringify(orders.filter(order => order.userId === user.id)))
-        window.location.assign("/pastricia-bakery");
+        window.location.assign("/");
       } else {
         alert("Email or password is invalid!")
-        window.location.assign('/pastricia-bakery/sign-in')
+        window.location.assign('/sign-in')
       }
     },
     signOut: () => {
       window.sessionStorage.clear();
-      window.location.assign('/pastricia-bakery')
+      window.location.assign('/')
     },
     createOrder: (state, action) => {
       const id =  Date.now()
       const order = { id: id, ...action.payload,shipping: 6, status: "Waiting", date: new Date().toLocaleDateString()};
       state.orders.push(order)
-      window.sessionStorage.setItem("orders", JSON.stringify(state.orders))
       window.sessionStorage.removeItem("carts")
     }
   }

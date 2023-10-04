@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-export default function Account() {
+export const Account = () => {
   const user = useSelector(state => state.userReducer.user)
 
   return (

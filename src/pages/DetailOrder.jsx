@@ -2,7 +2,7 @@ import React from "react";
 import { CreditCardIcon } from '@heroicons/react/24/outline';
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-export default function DetailOrder() {
+export const DetailOrder = () => {
 
   const { id } = useParams()
   const user = useSelector(state => state.userReducer.user)

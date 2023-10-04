@@ -1,9 +1,9 @@
 import React from "react";
-import Type from "../common/Type";
+import Type from "../components/Type";
 import { listItem } from "../data";
-import SliderProduct from "../common/SliderProduct";
+import SliderProduct from "../components/SliderProduct";
 
-export default function ProductsList() {
+export const ProductsList = () => {
   return (
     <div className="text-tertiary">
       <div className="container-fluid mx-auto">

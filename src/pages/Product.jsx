@@ -5,7 +5,7 @@ import { ChevronRightIcon, MinusIcon, PlusIcon } from "@heroicons/react/24/outli
 import { listItem } from "../data"
 
 import { updateItemQuantity } from '../controller/cartSlice'
-export default function Product() {
+export const Product = () => {
   const { id } = useParams()
 
   const dispatch = useDispatch()

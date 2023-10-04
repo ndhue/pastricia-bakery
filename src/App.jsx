@@ -1,50 +1,66 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { useEffect } from 'react';
+import AOS from "aos";
+import "aos/dist/aos.css";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet
+} from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import AOS from "aos";
-import "aos/dist/aos.css";
 
-import Navbar from "./common/Navbar";
-import Newsletter from "./common/Newsletter";
-import Footer from "./common/Footer";
+import Navbar from "./components/Navbar";
+import Newsletter from "./components/Newsletter";
+import Footer from "./components/Footer";
+import { ScrollToTop } from './components/ScrollToTop';
 
-import Home from "./components/Home";
-import SignIn from './components/SignIn';
-import SignUp from './components/SignUp';
-import Account from "./components/Account";
-import OrderHistory from './components/OrderHistory';
-import DetailOrder from './components/DetailOrder';
-import ProductsList from './components/ProductsList';
-import PageNotFound from './components/PageNotFound';
-import NewsAndPromotions from './components/NewsAndPromotions';
-import VisitUs from './components/VisitUs';
-import Product from './components/Product';
-import Checkout from './components/Checkout';
+import { Home } from "./pages/Home";
+import { SignIn } from './pages/SignIn';
+import { SignUp } from './pages/SignUp';
+import { Account } from "./pages/Account";
+import { OrderHistory } from './pages/OrderHistory';
+import { DetailOrder } from './pages/DetailOrder';
+import { ProductsList } from './pages/ProductsList';
+import { PageNotFound } from './pages/PageNotFound';
+import { NewsAndPromotions } from './pages/NewsAndPromotions';
+import { VisitUs } from './pages/VisitUs';
+import { Product } from './pages/Product';
+import { Checkout } from './pages/Checkout';
 
-import { ScrollToTop } from './common/ScrollToTop';
+const Layout = () => {
+  return (
+    <>
+      <Navbar />
+      <ScrollToTop>
+        <Outlet />
+        <Newsletter />
+        <Footer />
+      </ScrollToTop>
+    </>
+  )
+}
 
-
-import store from "./controller/store"
-import { useEffect } from 'react';
-const routesUser = [
-  { path: "/pastricia-bakery", component: <Home /> },
-  { path: "/pastricia-bakery/sign-in", component: <SignIn /> },
-  { path: "/pastricia-bakery/sign-up", component: <SignUp /> },
-  { path: "/pastricia-bakery/account", component: <Account /> },
-  { path: "/pastricia-bakery/order-history", component: <OrderHistory /> },
-  { path: "/pastricia-bakery/products", component: <ProductsList /> },
-  { path: "/pastricia-bakery/news&promotion", component: <NewsAndPromotions /> },
-  { path: "/pastricia-bakery/visit-us", component: <VisitUs /> },
-  { path: "/pastricia-bakery/checkout", component: <Checkout /> },
-];
-
-const renderRoutesUser = () => {
-  return routesUser.map((route, index) => {
-    return <Route key={index} path={route.path} element={route.component} />
-  })
-};
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/account", element: <Account /> },
+      { path: "/order-history", element: <OrderHistory /> },
+      { path: "/products", element: <ProductsList /> },
+      { path: "/news&promotion", element: <NewsAndPromotions /> },
+      { path: "/visit-us", element: <VisitUs /> },
+      { path: "/checkout", element: <Checkout /> },
+      { path:'/*', element: <PageNotFound />},
+      { path:'/details/:id', element: <Product />},
+      { path:'/detail-order/:id', element: <DetailOrder />},
+      { path: "/sign-in", element: <SignIn /> },
+      { path: "/sign-up", element: <SignUp /> },
+    ]
+  }
+])
 
 function App() {
   useEffect(() => {
@@ -56,21 +72,7 @@ function App() {
     AOS.refresh();
   },[])
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <Navbar />
-        <ScrollToTop>
-          <Routes>
-            {renderRoutesUser()}
-            <Route path='/pastricia-bakery/*' element={<PageNotFound />} />
-            <Route path='/pastricia-bakery/:id' element={<Product />} />
-            <Route path='/pastricia-bakery/detail-order/:id' element={<DetailOrder />} />
-          </Routes>
-        </ScrollToTop>
-        <Newsletter />
-        <Footer />
-      </BrowserRouter>
-    </Provider>
+    <RouterProvider router={router} />
   )
 }
 

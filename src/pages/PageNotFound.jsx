@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function PageNotFound(props) {
+export const PageNotFound = (props) => {
   return (
     <div className='m-auto text-center pt-[140px] py-20 md:py-24 text-sm md:text-md' style={{ maxWidth: 500 }}>
       <img src='https://static.xx.fbcdn.net/rsrc.php/yN/r/MnQWcWb6SrY.svg' width={60} height={60} />

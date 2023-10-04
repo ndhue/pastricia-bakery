@@ -6,9 +6,9 @@ export default function Footer() {
     <div className="bg-[url('https://cdn.shopify.com/s/files/1/0565/9757/7916/files/BP_Flight_1_2048x.jpg?v=1651861083')] bg-cover bg-center bg-no-repeat sm:py-20 lg:py-20 text-tertiary opacity-50 h-[500px] md:h-[320px]"></div>
 	<div className="absolute top-[10%] md:inset-y-[25%] container flex flex-col justify-between pt-3 px-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
 		<div className="lg:w-1/3">
-			<Link rel="noopener noreferrer" to="/pastricia-bakery" className="flex justify-center space-x-3 lg:justify-start">
+			<Link rel="noopener noreferrer" to="/" className="flex justify-center space-x-3 lg:justify-start">
 				<div className="flex items-center justify-center w-20 h-20 rounded-full">
-                      <img alt="logo" src="/pastricia-bakery/assets/img/Logo.png"/>
+                      <img alt="logo" src="/assets/img/Logo.png"/>
 				</div>
 				<span className="self-center text-2xl font-semibold">Pastrica Bakery</span>
 			</Link>

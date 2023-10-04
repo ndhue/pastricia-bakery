@@ -43,7 +43,7 @@ export default function SliderProduct(props) {
     .map((p, index) => {
       return (
         <Link
-          to={`/pastricia-bakery/${p.id}`}
+          to={`/details/${p.id}`}
           key={index}
           className="col-span-2 w-full lg:col-span-1 mx-3">
           <div className="px-4">
@@ -70,7 +70,7 @@ export default function SliderProduct(props) {
             </p>
           </div>
           <p className="absolute inset-x-[25%] mx-auto w-[110px] text-center pt-3 underline underline-offset-2 hover:text-black ease-in-out duration-300">
-            <Link to={`/pastricia-bakery/products`}>VIEW MORE</Link></p>
+            <Link to={`/products`}>VIEW MORE</Link></p>
           <div className="absolute right-10">
             <button onClick={previous} className="hover:text-gray-500 duration-200"> <ArrowLeftCircleIcon className="block h-10 w-10" /> </button>
             <button onClick={next} className="hover:text-gray-500 duration-200"> <ArrowRightCircleIcon className="block h-10 w-10" /> </button>

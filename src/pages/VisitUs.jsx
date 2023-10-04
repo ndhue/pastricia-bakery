@@ -1,7 +1,7 @@
 import React from 'react'
 import { MapPinIcon } from "@heroicons/react/24/outline";
 import { locationHCM, locationCT } from '../data';
-export default function VisitUs() {
+export const VisitUs = () => {
   const renderLocation = (locations) => {
     return locations.map((location) => {
       return (

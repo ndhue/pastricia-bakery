@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-export default function OrderHistory() {
+export const OrderHistory = () => {
 
   const orders = useSelector(state => state.userReducer.orders)
 
@@ -32,7 +32,7 @@ export default function OrderHistory() {
                 <td className="px-6 py-4">${order.total}.00</td>
                 {order.status != "Waiting" ? <td className="px-6 py-4 text-green-500">{order.status}</td> : <td className="px-6 py-4 text-yellow-500">{order.status}</td>}
                 <td className="px-6 py-4">
-                  <Link to={`/pastricia-bakery/detail-order/${order.id}`} className="hover:underline hover:underline-offset-2 hover:text-primary ease-in-out duration-300">Detail</Link>
+                  <Link to={`/detail-order/${order.id}`} className="hover:underline hover:underline-offset-2 hover:text-primary ease-in-out duration-300">Detail</Link>
                 </td>
               </tr>
             ))}

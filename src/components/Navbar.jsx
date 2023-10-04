@@ -2,16 +2,16 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon, UserCircleIcon, MinusIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { addItem, removeItem, remove } from '../controller/cartSlice'
 import { signOut } from '../controller/userSlice'
 import { useDispatch, useSelector } from "react-redux";
 const navigation = [
-  { name: "OUR PRODUCT", href: "/pastricia-bakery/products" },
-  { name: "NEW & PROMOTION", href: "/pastricia-bakery/news&promotion" },
-  { name: "VISIT US", href: "/pastricia-bakery/visit-us" },
-  { name: "ABOUT US", href: "/pastricia-bakery/visit-us" },
+  { name: "OUR PRODUCT", href: "/products" },
+  { name: "NEW & PROMOTION", href: "/news&promotion" },
+  { name: "VISIT US", href: "/visit-us" },
+  { name: "ABOUT US", href: "/visit-us" },
 ];
 
 function classNames(...classes) {
@@ -19,6 +19,7 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const location = useLocation();
 
   // Check login
   const user = useSelector(state => state.userReducer.user)
@@ -31,9 +32,6 @@ export default function Navbar() {
 
   // delete cart
   const dispatch = useDispatch()
-  const delet = (id) => {
-    dispatch(remove(id))
-  }
 
   // delete item
   const deletes = (id) => {
@@ -103,19 +101,19 @@ export default function Navbar() {
                   <div className="hidden lg:ml-6 lg:block">
                     <div className="flex space-x-4">
                       <Link
-                        to="/pastricia-bakery/products"
+                        to="/products"
                         className=" bg-secondary hover:bg-primary rounded-sm px-4 py-2 font-medium ease-in-out duration-300"
                       >
                         OUR PRODUCTS
                       </Link>
                       <Link
-                        to="/pastricia-bakery/news&promotion"
+                        to="/news&promotion"
                         className=" bg-secondary hover:bg-primary rounded-sm px-4 py-2 font-medium ease-in-out duration-300"
                       >
                         NEW & PROMOTION
                       </Link>
                       <Link
-                        to="/pastricia-bakery/visit-us"
+                        to="/visit-us"
                         className=" bg-secondary hover:bg-primary rounded-sm px-4 py-2 font-medium ease-in-out duration-300"
                       >
                         VISIT US
@@ -126,13 +124,13 @@ export default function Navbar() {
                   </div>
                 </div>
                 <div className="absolute inset-x-0 w-28 md:w-36 lg:w-30 mx-auto mt-8 md:mt-11 rounded-full">
-                  <Link to="/pastricia-bakery">
-                    <img alt="logo" src="/pastricia-bakery/assets/img/Logo.png" />
+                  <Link to="/">
+                    <img alt="logo" src="/assets/img/Logo.png" />
                   </Link>
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static lg:inset-auto lg:ml-6 lg:pr-0">
                   <Link
-                    to="/pastricia-bakery/visit-us"
+                    to="/visit-us"
                     className="relative lg:block hidden bg-secondary hover:bg-primary rounded-sm px-4 py-2 font-medium ease-in-out duration-300"
                   >
                     ABOUT US
@@ -184,7 +182,7 @@ export default function Navbar() {
                         <Menu.Item>
                           {({ active }) => (
                             <Link
-                              to="/pastricia-bakery/account"
+                              to="/account"
                               className={classNames(
                                 active ? "bg-secondary ease-in-out duration-300" : "",
                                 "block px-4 py-2"
@@ -197,7 +195,7 @@ export default function Navbar() {
                         <Menu.Item>
                           {({ active }) => (
                             <Link
-                              to="/pastricia-bakery/order-history"
+                              to="/order-history"
                               className={classNames(
                                 active ? "bg-secondary ease-in-out duration-300" : "",
                                 "block px-4 py-2"
@@ -226,7 +224,7 @@ export default function Navbar() {
                         <Menu.Item>
                           {({ active }) => (
                             <Link
-                              to="/pastricia-bakery/sign-in"
+                              to="/sign-in"
                               className={classNames(
                                 active ? "bg-secondary ease-in-out duration-300" : "",
                                 "block px-4 py-2"
@@ -247,11 +245,11 @@ export default function Navbar() {
                       <svg className="flex-1 w-7 h-7 fill-current" viewBox="0 0 24 24">
                         <path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" />
                       </svg>
-                      {getData.length !== 0 ? (
+                      {getData.length !== 0 && (
                         <span className="absolute right-0 top-0 rounded-full bg-red-600 w-5 h-5 p-0 m-[-4px] text-white font-mono text-sm  leading-1 text-center">
                         {getData.length}
                       </span>
-                      ) : (<></>)}
+                      )}
                     </a>
 
                   </div>
@@ -308,7 +306,7 @@ export default function Navbar() {
           <button onClick={toggleCart} className="btn bg-[#581B28] border border-[#581B28] text-[#f0d4d6] rounded-xl hover:bg-white hover:text-tertiary ease-in-out duration-500 font-bold block py-3 xs:w-40 w-52 my-4 mx-auto">Continue Shopping</button>
           <button className="btn bg-white text-tertiary border border-[#581B28] rounded-xl hover:bg-[#581B28] hover:text-[#f0d4d6] ease-in-out duration-500 font-bold block py-3 xs:w-40 w-52 mt-4 mx-auto"
             onClick={() => {
-              user ? navigate("/pastricia-bakery/checkout") : navigate("/pastricia-bakery/sign-in")
+              user ? navigate("/checkout") : navigate("/sign-in")
               toggleCart();
             }}
             disabled={(getData.length !== 0) ? false : true}
@@ -338,7 +336,7 @@ export default function Navbar() {
                         </button>
                       </div>
                     </div>
-                    <button className="hover:text-red-900 duration-200 text-red-700" onClick={() => { delet(e.id) }}>
+                    <button className="hover:text-red-900 duration-200 text-red-700" onClick={() => { deletes(e.id) }}>
                       <TrashIcon className="h-6 w-6" />
                     </button>
                   </div>

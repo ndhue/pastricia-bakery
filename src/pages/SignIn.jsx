@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { isLogin } from '../controller/userSlice'
 import { useDispatch } from 'react-redux';
-export default function SignIn() {
+import { LoginGoogle } from '../components/LoginGoogle';
+export const SignIn = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch();
@@ -107,7 +108,8 @@ export default function SignIn() {
           type="submit"
           >SIGN IN</button>
           <a href='#' className='block underline text-right my-1'>Forgot your password?</a>
-          <a href='/pastricia-bakery/sign-up' className='block underline text-right my-1'>Create account</a>
+          <a href='/sign-up' className='block underline text-right my-1'>Create account</a>
+        <LoginGoogle />
         </form>
       </div>
       <div className="logo col-span-1 mx-auto w-3/4 md:inline-block hidden">

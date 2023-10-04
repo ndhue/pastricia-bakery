@@ -1,5 +1,5 @@
 import React from 'react'
-export default function NewsAndPromotions() {
+export const NewsAndPromotions = () => {
     return (
         <div className="text-tertiary pt-[140px]">
             <div className="title text-3xl lg:text-4xl text-center py-6">
