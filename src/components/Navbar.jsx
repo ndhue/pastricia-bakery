@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { Disclosure, Menu, Transition, Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon, UserCircleIcon, MinusIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
@@ -19,7 +19,7 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
-  const location = useLocation();
+  const [open, setOpen] = useState(false);
 
   // Check login
   const user = useSelector(state => state.userReducer.user)
@@ -28,7 +28,7 @@ export default function Navbar() {
 
   const navigate = useNavigate()
   //add to cart
-  const getData = useSelector(state => state.cartReducer.carts)
+  const cart = useSelector(state => state.cartReducer.carts)
 
   // delete cart
   const dispatch = useDispatch()
@@ -53,25 +53,14 @@ export default function Navbar() {
   useEffect(() => {
     const totals = () => {
       let price = 0
-      getData.forEach((e, i) => {
+      cart.forEach((e, i) => {
         price = parseFloat(e.price) * e.qty + price
       })
       setPrice(price)
     }
     totals();
-  }, [getData]);
+  }, [cart]);
 
-  const toggleCart = () => {
-    if (ref.current.classList.contains('translate-x-full')) {
-      ref.current.classList.remove('translate-x-full')
-      ref.current.classList.add('translate-x-0')
-    }
-    else if (!ref.current.classList.contains('translate-x-full')) {
-      ref.current.classList.remove('translate-x-0')
-      ref.current.classList.add('translate-x-full')
-    }
-  }
-  const ref = useRef()
   return (
     <div className="fixed w-full z-20 border-b-2">
       <Disclosure as="nav" className="home bg-white text-tertiary">
@@ -161,7 +150,7 @@ export default function Navbar() {
                     />
                   </label>
                   {/* Profile dropdown */}
-                    <Menu as="div" className="relative">
+                  <Menu as="div" className="relative">
                     <div>
                       <Menu.Button className="flex rounded-full focus:outline-none focus:ring-1 focus:ring-dark focus:ring-offset-1 text-dark">
                         <span className="sr-only">Open user menu</span>
@@ -179,76 +168,76 @@ export default function Navbar() {
                     >
                       {user ? (
                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                        <Menu.Item>
-                          {({ active }) => (
-                            <Link
-                              to="/account"
-                              className={classNames(
-                                active ? "bg-secondary ease-in-out duration-300" : "",
-                                "block px-4 py-2"
-                              )}
-                            >
-                              Your account
-                            </Link>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <Link
-                              to="/order-history"
-                              className={classNames(
-                                active ? "bg-secondary ease-in-out duration-300" : "",
-                                "block px-4 py-2"
-                              )}
-                            >
-                              Order History
-                            </Link>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <Link
-                              onClick={()=> isLogOut()}
-                              className={classNames(
-                                active ? "bg-secondary ease-in-out duration-300" : "",
-                                "block px-4 py-2"
-                              )}
-                            >
-                              Sign out
-                            </Link>
-                          )}
-                        </Menu.Item>
-                      </Menu.Items>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                to="/account"
+                                className={classNames(
+                                  active ? "bg-secondary ease-in-out duration-300" : "",
+                                  "block px-4 py-2"
+                                )}
+                              >
+                                Your account
+                              </Link>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                to="/order-history"
+                                className={classNames(
+                                  active ? "bg-secondary ease-in-out duration-300" : "",
+                                  "block px-4 py-2"
+                                )}
+                              >
+                                Order History
+                              </Link>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                onClick={() => isLogOut()}
+                                className={classNames(
+                                  active ? "bg-secondary ease-in-out duration-300" : "",
+                                  "block px-4 py-2"
+                                )}
+                              >
+                                Sign out
+                              </Link>
+                            )}
+                          </Menu.Item>
+                        </Menu.Items>
                       ) : (
                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                        <Menu.Item>
-                          {({ active }) => (
-                            <Link
-                              to="/sign-in"
-                              className={classNames(
-                                active ? "bg-secondary ease-in-out duration-300" : "",
-                                "block px-4 py-2"
-                              )}
-                            >
-                              Sign in
-                            </Link>
-                          )}
-                        </Menu.Item>
-                      </Menu.Items>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                to="/sign-in"
+                                className={classNames(
+                                  active ? "bg-secondary ease-in-out duration-300" : "",
+                                  "block px-4 py-2"
+                                )}
+                              >
+                                Sign in
+                              </Link>
+                            )}
+                          </Menu.Item>
+                        </Menu.Items>
                       )}
-                      
+
                     </Transition>
                   </Menu>
                   {/* CART */}
-                  <div onClick={toggleCart} className="cursor-pointer ml-3 bg-dark rounded-full text-white h-8 w-8 flex">
+                  <div onClick={() => setOpen(true)} className="cursor-pointer ml-3 bg-dark rounded-full text-white h-8 w-8 flex">
                     <a role="button" className="relative flex items-center pl-[2px]">
                       <svg className="flex-1 w-7 h-7 fill-current" viewBox="0 0 24 24">
                         <path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" />
                       </svg>
-                      {getData.length !== 0 && (
+                      {cart.length !== 0 && (
                         <span className="absolute right-0 top-0 rounded-full bg-red-600 w-5 h-5 p-0 m-[-4px] text-white font-mono text-sm  leading-1 text-center">
-                        {getData.length}
-                      </span>
+                          {cart.length}
+                        </span>
                       )}
                     </a>
 
@@ -301,60 +290,125 @@ export default function Navbar() {
         )}
       </Disclosure>
       {/* CART */}
-      <div ref={ref} className="sidebar absolute right-0 top-0 bg-white transition-transform translate-x-full duration-500 w-[355px] h-[100vh]">
-        <div className="button text-[17px] my-6">
-          <button onClick={toggleCart} className="btn bg-[#581B28] border border-[#581B28] text-[#f0d4d6] rounded-xl hover:bg-white hover:text-tertiary ease-in-out duration-500 font-bold block py-3 xs:w-40 w-52 my-4 mx-auto">Continue Shopping</button>
-          <button className="btn bg-white text-tertiary border border-[#581B28] rounded-xl hover:bg-[#581B28] hover:text-[#f0d4d6] ease-in-out duration-500 font-bold block py-3 xs:w-40 w-52 mt-4 mx-auto"
-            onClick={() => {
-              user ? navigate("/checkout") : navigate("/sign-in")
-              toggleCart();
-            }}
-            disabled={(getData.length !== 0) ? false : true}
-            >
-            $$ Checkout</button>
-        </div>
-        <div className="items pt-2 mx-4 text-tertiary border-t-2">
-          <h1 className="text-2xl">Your items</h1>
-          {getData.length ? (
-            <div className="py-1">
-              <div className="overflow-y-auto h-[400px]">
-                {getData.map(e => (
-                  <div key={e.id} className="item flex items-center py-3">
-                    <div className="image flex-1">
-                      <img src={e.src} width="120" height="120" className="rounded-md"></img>
-                    </div>
-                    <div className="desc pl-6 w-[180px]">
-                      <h4 className="font-bold">{e.name}</h4>
-                      <p className="text-sm">${e.price}</p>
-                      <div className="pt-2">
-                        <button className="border border-gray-200 hover:bg-slate-100 duration-200" onClick={e.qty <= 1 ? () => deletes(e.id) : () => decrement(e)}>
-                          <MinusIcon className="h-3 w-3 inline mx-2 my-1" />
-                        </button>
-                        <span className="mx-4"> {e.qty} </span>
-                        <button className="border border-gray-200 hover:bg-slate-100 duration-200" onClick={() => increment(e)}>
-                          <PlusIcon className="h-3 w-3 inline mx-2 my-1" />
-                        </button>
+      <Transition.Root show={open} as={Fragment}>
+        <Dialog as="div" className="relative z-40" onClose={setOpen}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-in-out duration-500"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in-out duration-500"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-hidden">
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                <Transition.Child
+                  as={Fragment}
+                  enter="transform transition ease-in-out duration-500 sm:duration-700"
+                  enterFrom="translate-x-full"
+                  enterTo="translate-x-0"
+                  leave="transform transition ease-in-out duration-500 sm:duration-700"
+                  leaveFrom="translate-x-0"
+                  leaveTo="translate-x-full"
+                >
+                  <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
+                    <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                      <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+                        <div className="flex items-start justify-between">
+                          <Dialog.Title className="text-lg font-medium text-gray-900">Your items ({cart.length})</Dialog.Title>
+                          <div className="ml-3 flex h-7 items-center">
+                            <button
+                              type="button"
+                              className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
+                              onClick={() => setOpen(false)}
+                            >
+                              <span className="absolute -inset-0.5" />
+                              <span className="sr-only">Close panel</span>
+                              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                            </button>
+                          </div>
+                        </div>
+
+                        <div className="mt-8">
+                          <div className="flow-root">
+                            <ul role="list" className="-my-6 divide-y divide-gray-200">
+                              {cart.map(e => (
+                                <li key={e.id} className="flex py-5">
+                                  <p 
+                                    onClick={() => {
+                                      navigate(`/details/${e.id}`);
+                                      setOpen(false);
+                                    }}
+                                    className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-20 cursor-pointer">
+                                    <img
+                                      src={e.src}
+                                      alt="png"
+                                      className="h-full w-full object-cover object-center"
+                                    />
+                                  </p>
+                                  <div className="ml-4 flex flex-1 flex-col">
+                                      <div className="flex justify-between text-base font-medium text-gray-900">
+                                        <h4 
+                                        onClick={() => {
+                                          navigate(`/details/${e.id}`);
+                                          setOpen(false);
+                                        }}
+                                        className="font-bold cursor-pointer">{e.name}</h4>
+                                        <button className="hover:text-red-900 duration-200 text-red-700" onClick={() => { deletes(e.id) }}>
+                                          <TrashIcon className="h-6 w-6" />
+                                        </button>
+                                      </div>
+                                    <div className="flex flex-1 items-center justify-between text-sm">
+                                      <div className="price">
+                                        <p className="text-lg tracking-wide font-semibold text-red-800">${e.price}</p>
+                                      </div>
+                                      <div className="flex justify-center items-center mt-2">
+                                        <button className="border border-gray-200 hover:bg-slate-100 duration-200" onClick={e.qty <= 1 ? () => deletes(e.id) : () => decrement(e)}>
+                                          <MinusIcon className="h-3 w-3 inline my-1 mx-1" />
+                                        </button>
+                                        <span className="mx-4"> {e.qty} </span>
+                                        <button className="border border-gray-200 hover:bg-slate-100 duration-200" onClick={() => increment(e)}>
+                                          <PlusIcon className="h-3 w-3 inline my-1 mx-1 text-slate-700" />
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="border-t border-gray-200 px-4 py-3 sm:px-6 flex justify-between items-center">
+                        <div className='font-bold'>
+                          <p className="flex-auto">Total:</p>
+                          <p className="text-right text-xl text-red-700"> ${price}.00</p>
+                        </div>
+
+                        <button className="btn bg-white text-tertiary border border-[#581B28] rounded-xl hover:bg-[#581B28] hover:text-[#f0d4d6] ease-in-out duration-500 font-bold block py-3 w-40"
+                          onClick={() => {
+                            user ? navigate("/checkout") : navigate("/sign-in");
+                            setOpen(false);
+                          }}
+                          disabled={(cart.length !== 0) ? false : true}
+                        >
+                          $$ Checkout</button>
                       </div>
                     </div>
-                    <button className="hover:text-red-900 duration-200 text-red-700" onClick={() => { deletes(e.id) }}>
-                      <TrashIcon className="h-6 w-6" />
-                    </button>
-                  </div>
-                ))}
-
-              </div>
-              <div className='details_total font-bold flex pt-2 pr-2 border-t-2'>
-                <p className="flex-auto">Total:</p>
-                <p className="text-right text-lg text-[#cf2e2e]"> ${price}.00</p>
+                  </Dialog.Panel>
+                </Transition.Child>
               </div>
             </div>
-          ) : (
-            <div>
-              <p className="text-center py-4">Your cart is empty</p>
-            </div>
-          )}
-        </div>
-      </div>
+          </div>
+        </Dialog>
+      </Transition.Root>
     </div>
   );
 }
