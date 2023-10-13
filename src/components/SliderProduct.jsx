@@ -6,6 +6,7 @@ export default function SliderProduct(props) {
   const name = props.name;
   const description = props.description;
   const listProduct = props.listProduct;
+  const category = props.note ? props.note : props.type;
 
   const slider = useRef(null);
 
@@ -49,9 +50,9 @@ export default function SliderProduct(props) {
           <div className="px-4">
             <img className="duration-500 ease-in-out hover:scale-105" alt={p.name} src={p.src}></img>
             <div className="detail pt-4">
-              <h4 className="name leading-6 lg:leading-6 text-xl lg:text-2xl h-14 lg:h-[65px]">{p.name}</h4>
+              <h4 className="name text-xl lg:text-2xl">{p.name.length > 16 ? p.name.slice(0, 16) + '...' : p.name}</h4>
               <p className="desc text-sm pt-3 lg:text-[15px] leading-5">{p.desc}</p>
-              <h5 className="price text-base lg:text-[17px] pt-1">Starting at ${p.price}</h5>
+              <h5 className="price text-base lg:text-[17px] pt-1">Starting at ${Number(p.price).toFixed(2)}</h5>
             </div>
           </div>
         </Link>
@@ -70,7 +71,7 @@ export default function SliderProduct(props) {
             </p>
           </div>
           <p className="absolute inset-x-[25%] mx-auto w-[110px] text-center pt-3 underline underline-offset-2 hover:text-black ease-in-out duration-300">
-            <Link to={`/products`}>VIEW MORE</Link></p>
+            <Link to={`/products/${category}`}>VIEW MORE</Link></p>
           <div className="absolute right-10">
             <button onClick={previous} className="hover:text-gray-500 duration-200"> <ArrowLeftCircleIcon className="block h-10 w-10" /> </button>
             <button onClick={next} className="hover:text-gray-500 duration-200"> <ArrowRightCircleIcon className="block h-10 w-10" /> </button>

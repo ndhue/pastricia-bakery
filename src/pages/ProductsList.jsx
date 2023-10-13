@@ -15,6 +15,7 @@ export const ProductsList = () => {
             name="COOKIES"
             description=""
             listProduct={listItem?.filter(item => item.type == "cookies")}
+            type="cookies"
           />
         </div>
         <div data-aos="fade-up" className="cupcakes bg-white">
@@ -22,6 +23,7 @@ export const ProductsList = () => {
             name="CUPCAKES"
             description=""
             listProduct={listItem?.filter(item => item.type == "cupcakes")}
+            type="cupcakes"
           />
         </div>
         <div data-aos="fade-up" className="cheesecakes bg-primary">
@@ -29,6 +31,7 @@ export const ProductsList = () => {
             name="CHEESECAKES"
             description=""
             listProduct={listItem?.filter(item => item.type == "cheesecakes")}
+            type="cheesecakes"
           />
         </div>
         <div data-aos="fade-up" className="cakes bg-white">
@@ -36,6 +39,7 @@ export const ProductsList = () => {
             name="CAKES"
             description=""
             listProduct={listItem?.filter(item => item.type == "cakes")}
+            type="cakes"
           />
         </div>
         <div data-aos="fade-up" className="choux bg-primary">
@@ -43,6 +47,7 @@ export const ProductsList = () => {
             name="CHOUX CREAM"
             description=""
             listProduct={listItem?.filter(item => item.type == "choux")}
+            type="choux"
           />
         </div>
         <div data-aos="fade-up" className="donuts bg-white">
@@ -50,6 +55,7 @@ export const ProductsList = () => {
             name="DONUTS"
             description=""
             listProduct={listItem?.filter(item => item.type == "donuts")}
+            type="donuts"
           />
         </div>
       </div>

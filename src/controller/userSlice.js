@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { users, orders } from "../data"
 const initialState = {
-  user: window.sessionStorage.getItem("user") ? JSON.parse(window.sessionStorage.getItem("user")) : null,
-
-  orders: window.sessionStorage.getItem("orders") ? JSON.parse(window.sessionStorage.getItem("orders")) : []
+  userId: window.sessionStorage.getItem("userId") ? JSON.parse(window.sessionStorage.getItem("userId")) : "",
+  orders: orders
 };
 
 const userSlice = createSlice({
@@ -13,10 +12,12 @@ const userSlice = createSlice({
     isLogin: (state, action) => {
       const user = users.find(u => u.email === action.payload.email && u.pwd == action.payload.password)
       if (user !== undefined) {
-        window.location.assign("/");
+        state.userId = user.id;
+        window.sessionStorage.setItem("userId", JSON.stringify(state.userId))
+        window.location.assign('/');
       } else {
-        alert("Email or password is invalid!")
-        window.location.assign('/sign-in')
+        alert("Email or password is invalid!");
+        window.location.assign('/sign-in');
       }
     },
     signOut: () => {

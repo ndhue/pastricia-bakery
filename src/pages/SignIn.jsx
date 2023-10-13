@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import { isLogin } from '../controller/userSlice'
 import { useDispatch } from 'react-redux';
-import { LoginGoogle } from '../components/LoginGoogle';
 export const SignIn = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch();
   const auth = (e) => {
     e.preventDefault();
-    dispatch(isLogin({email, password}))
+    dispatch(isLogin({email, password}));
   }
 
   const initialValid = {
@@ -109,7 +108,6 @@ export const SignIn = () => {
           >SIGN IN</button>
           <a href='#' className='block underline text-right my-1'>Forgot your password?</a>
           <a href='/sign-up' className='block underline text-right my-1'>Create account</a>
-        <LoginGoogle />
         </form>
       </div>
       <div className="logo col-span-1 mx-auto w-3/4 md:inline-block hidden">

@@ -27,6 +27,7 @@ import { NewsAndPromotions } from './pages/NewsAndPromotions';
 import { VisitUs } from './pages/VisitUs';
 import { Product } from './pages/Product';
 import { Checkout } from './pages/Checkout';
+import { ProductsByCategory } from './pages/ProductsByCategory';
 
 const Layout = () => {
   return (
@@ -58,6 +59,7 @@ const router = createBrowserRouter([
       { path:'/detail-order/:id', element: <DetailOrder />},
       { path: "/sign-in", element: <SignIn /> },
       { path: "/sign-up", element: <SignUp /> },
+      { path: "/products/:category", element: <ProductsByCategory /> },
     ]
   }
 ])

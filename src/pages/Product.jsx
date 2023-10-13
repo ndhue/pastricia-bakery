@@ -22,7 +22,7 @@ export const Product = () => {
           <div className="max-w-7xl mx-auto text-tertiary pt-[140px] md:px-0 px-6 pb-5" key={item.id}>
             <section className="details">
               <div className="header py-2">
-                <Link to="/pastricia-bakery/products" className='hover:underline hover:underline-offset-2 hover:text-primary ease-in-out duration-300'>OUR PRODUCTS</Link>
+                <Link to="/products" className='hover:underline hover:underline-offset-2 hover:text-primary ease-in-out duration-300'>OUR PRODUCTS</Link>
                 <ChevronRightIcon className="h-7 w-7 inline pb-1" />
                 <span className='uppercase'>{item.type}</span>
               </div>

@@ -1,12 +1,12 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Disclosure, Menu, Transition, Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon, UserCircleIcon, MinusIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
-
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-
 import { addItem, removeItem, remove } from '../controller/cartSlice'
-import { signOut } from '../controller/userSlice'
-import { useDispatch, useSelector } from "react-redux";
+import { signOut } from '../controller/userSlice';
+import { users, orders } from "../data";
+
 const navigation = [
   { name: "OUR PRODUCT", href: "/products" },
   { name: "NEW & PROMOTION", href: "/news&promotion" },
@@ -20,9 +20,13 @@ function classNames(...classes) {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState(null);
 
   // Check login
-  const user = useSelector(state => state.userReducer.user)
+  const userId = useSelector(state => state.userReducer.userId);
+  useEffect(() => {
+    setUser(users.find(u => u.id === userId));
+  }, [userId])
   // sign out
   const isLogOut = () => dispatch(signOut())
 

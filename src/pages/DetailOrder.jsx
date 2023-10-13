@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { CreditCardIcon } from '@heroicons/react/24/outline';
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { users } from "../data";
 export const DetailOrder = () => {
 
   const { id } = useParams()
-  const user = useSelector(state => state.userReducer.user)
+  const [user, setUser] = useState(null);
+  const userId = useSelector(state => state.userReducer.userId)
+  useEffect(() => {
+    setUser(users.find(u => u.id === userId));
+  }, [userId])
   const orders = useSelector(state => state.userReducer.orders)
   
   return (
@@ -124,7 +129,8 @@ export const DetailOrder = () => {
                   <th></th>
                 </tr>
               </thead>
-              <tbody>
+              {user && (
+                <tbody>
                 <tr className="border-2">
                   <td scope="row" className="p-4">
                     <span className="underline">Sent to:</span>
@@ -144,6 +150,7 @@ export const DetailOrder = () => {
                   </td>
                 </tr>
               </tbody>
+              )}
             </table>
           </div>
           <div className="mt-4 lg:col-span-2 lg:mt-0">

@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { users } from '../data';
 export const Account = () => {
-  const user = useSelector(state => state.userReducer.user)
+  
+  const [user, setUser] = useState(null);
+  const userId = useSelector(state => state.userReducer.userId)
+  useEffect(() => {
+    setUser(users.find(u => u.id === userId));
+  }, [userId])
 
   return (
     <div className='text-tertiary pt-[140px]'>

@@ -43,6 +43,7 @@ export const Home = () => {
           name="BEST SELLERS"
           description="From classic cupcakes and layer cakes to rich banana pudding, our best sellers are a great place to begin your Pastricia experience."
           listProduct={listItem?.filter(item => item.note == "best-seller")}
+          note="best-seller"
         />
       </div>
       <div data-aos="fade-up" className="new_products">
@@ -50,6 +51,7 @@ export const Home = () => {
           name="NEW PRODUCTS"
           description=""
           listProduct={listItem?.filter(item => item.note == "new-products")}
+          note="new-products"
         />
       </div>
     </div>

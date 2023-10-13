@@ -1,10 +1,10 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 
 export const OrderHistory = () => {
 
-  const orders = useSelector(state => state.userReducer.orders)
+  const orders = useSelector(state => state.userReducer.orders);
 
   return (
     <div className="text-tertiary pt-[140px]">

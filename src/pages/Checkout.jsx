@@ -3,18 +3,23 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { createOrder } from '../controller/userSlice'
 import { deleteCart } from '../controller/cartSlice'
+import { users } from '../data'
 export const Checkout = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector(state => state.userReducer.user)
+  const [user, setUser] = useState(null);
+  const userId = useSelector(state => state.userReducer.userId)
+  useEffect(() => {
+    setUser(users.find(u => u.id === userId));
+  }, [userId])
+  
   const products = useSelector(state => state.cartReducer.carts)
-  const userId = user.id
   const payment = () => {
     dispatch(createOrder({userId,products,price,total}))
     dispatch(deleteCart())
     alert("Success!")
-    navigate(`/pastricia-bakery/order-history`)
+    navigate(`/order-history`)
   }
   // total prcie
   const [price, setPrice] = useState();
@@ -34,7 +39,8 @@ export const Checkout = () => {
       <div className='text-tertiary pt-[140px] md:grid md:grid-cols-2 mx-auto lg:w-8/12 w-10/12'>
         <div className="information col-span-1 border-b-4 md:border-b-0 md:border-r-4">
           <h2 className='font-bold text-2xl text-center'>Your information</h2>
-          <div className="form mx-6">
+          { user && (
+            <div className="form mx-6">
             <p className='my-2'>
               <span className='font-bold text-lg mr-4'>Name:</span>
               <span className='text-[17px]'> {user.fName} {user.lName}</span>
@@ -52,6 +58,7 @@ export const Checkout = () => {
               <span className='text-[17px]'> 00/00/0000 </span>
             </p>
           </div>
+          )}
         </div>
         <div className="order col-span-1 md:mt-0 mt-4">
           <h2 className='font-bold text-2xl text-center'>Your order</h2>
